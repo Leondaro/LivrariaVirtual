@@ -1,13 +1,17 @@
 import connectionDB from "../../../services/connectionDB";
 import { ObjectId } from "mongodb";
-//import uploadImage from "../../../public";
-import formidable from "formidable";
+import FileStorage from "../../../helpers/FileStorage";
+import Formidable from "formidable";
+import path, { join } from "path";
 import fs from "fs";
-import path from "path";
+//import no from ""
+//import path from "path";
+//import { inspect } from "util";
+//import Busboy from "@fastify/busboy";
 
 
 export default async function Handler(req, res) {
-    const { method } = req;
+    const { method, body } = req;
 
     switch(method) {
         case 'GET':
@@ -23,7 +27,8 @@ export default async function Handler(req, res) {
         break;
         case 'POST':
             try {
-                const { img } = req.body;
+                //const { img } = req.body;
+                
                 //if (!item) throw res.status(400).json({ method: "post", success: false, data: error });
                 /*
                 const objId = new ObjectId();
@@ -33,27 +38,31 @@ export default async function Handler(req, res) {
                     orderFromSun: 9, 
                     hasRings: false, 
                     mainAtmosphere: [], 
-                    surfaceTemperatureC: {} 
-                }
-                const { db, client } = await connectionDB();
-                const result = await db.collection("planets").insertOne(obj)
-                */
-                const destPath = "../../../public/upload/products/";
-                const options : formidable.options = {};
-                options.uploadDir = path.join(process.cwd(), destPath)
-                options.filename = (name, ext, path, form) => {
-                    return Date.now().toString() + "_" + path.originalFilename;
-                }
+                    surfaceTemperatureC: {}
+                }*/
+                //const { db, client } = await connectionDB();
+                //const result = await db.collection("planets").insertOne(obj)
 
-                const form = formidable(options)
-                form.parse(req, async function (err, fields, files) {
-                    const file = files.file
-                    const data = fs.readFileSync(file.path);
-                    
-                    fs.writeFileSync(`../../../public/upload/products/${file.name}`, data);
-                    await fs.unlinkSync(file.path);
+                const form = new Formidable.IncomingForm();
+                const uploadFolder = path.join(__dirname, "../../../../public/upload/products");
+                form.maxFileSize = 50 * 1024 * 1024;
+                form.uploadDir = uploadFolder;
+                form.parse(req, async (err, fields, files) => {
+                    if (err) {
+                        console.log("error parsing files");
+                        console.log(err);
+                        return res.status(400).json({ 
+                            method: "post", 
+                            success: false, 
+                            content: err,
+                        });
+                    }
+                    //console.log(files);
+                    const result = FileStorager(files, uploadFolder);
+                    console.log(result);
                 });
-                res.status(201).json({ method: "post", success: true, content: {} });
+
+                res.status(201).json({ method: "post", success: true, content: body });
             } catch (error) {
                 console.log(error);
                 res.status(500).json({ method: "post", success: false, content: error });
@@ -61,3 +70,10 @@ export default async function Handler(req, res) {
         break;
     }
 }
+
+/**/
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};

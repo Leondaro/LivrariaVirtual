@@ -11,7 +11,8 @@ function Estoque() {
     const [inputs, setInputs] = useState({});
     const [item, setItem] = useState([]);
     const [idItem, setIdItem] = useState(null);
-    const [img, setImg] = useState([]);
+    const [fileImg, setFileImg] = useState([]);
+    const [previewImg, setPreviewImg] = useState("");
     const [books, setBooks] = useState([]);
     const tableCol = [
         "Título", 
@@ -67,10 +68,9 @@ function Estoque() {
     const HandlerFindBook = async (e) => {
         e.preventDefault();
         try {
-            const res = await api.get('/clients');
-            setBooks(res.data.content);
-            //console.log(res.data);
-            console.log(res.data);
+            const { data } = await api.get('/clients');
+            //setBooks(res.data.content);
+            console.log(data);
         } catch (error) {
             console.log(error);
         }
@@ -78,21 +78,22 @@ function Estoque() {
     const HandlerInsertBook = async (e) => {
         e.preventDefault();
         try {
-            /*
-            const formData = new FormData()
-            const config = {
-                headers: {
-                    "content-type": "multipart/form-data"
-                }
+            /**/
+            if (!fileImg.type.startsWith("image")) {
+                console.log("Please select a valide image");
+                return;
             }
-            formData.append("file", img, img.name);
-            formData.append("destination", "../public/upload/products");
-            */
-            const res = await api.post('/clients', img);
+            //setPreviewImg(URL.createObjectURL(fileImg));
+            //console.log(fileImg);
+            /**/
+
+            const formData = new FormData();
+            formData.append("myImage", fileImg)
+            const { data } = await api.post('/clients', formData);
             //setItem("");
-            //console.log(inputs);
-            //console.log(img);
-            console.log(res);
+            console.log(data);
+            //console.log(formData);
+            //console.log();
         } catch (error) {
             console.log(error);
         }
@@ -132,12 +133,13 @@ function Estoque() {
             </header>
             <Section>
                 <SectionTitle title="Novo Livro" />
-                <div className="button is-warning" data-value="Valor de teste" onClick={HandlerInsertBook} /*onClick={idItem === null ? HandlerInsertBook : HandlerUpdateBook}*/ >CLICK ME!</div>
-                <form onSubmit={HandlerInsertBook} encType="multipart/form-data">
+                <div className="button is-warning" data-value="Valor de teste" onClick={HandlerFindBook} /*onClick={idItem === null ? HandlerInsertBook : HandlerUpdateBook}*/ >CLICK ME!</div>
+                <form onSubmit={HandlerInsertBook} encType="multipart/form-data" >
                     <label>Campo</label>
-                    <input type="file" name="imgTest" placeholder="Escolha" onChange={(e) => setImg(e.target.files[0])} />
+                    <input type="file" name="imgTest" placeholder="Escolha" onChange={(e) => setFileImg(e.target.files[0])} />
                     <button className="button is-warning" type="submit"> MANDAR ME! </button>
                 </form>
+                
                 {/*}
                 
                 <Form idForm="cadLivro" crudForm={true} itemName="Livro" funcSubmit={HandlerInsertBook} />          
