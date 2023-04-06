@@ -58,7 +58,7 @@ export default async function Handler(req, res) {
                         });
                     }
                     //console.log(files);
-                    const result = FileStorager(files, uploadFolder);
+                    const result = FileStorage(files, uploadFolder);
                     console.log(result);
                 });
 

@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 
 
 function Estoque() {
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState([]);
     const [item, setItem] = useState([]);
     const [idItem, setIdItem] = useState(null);
     const [fileImg, setFileImg] = useState([]);
@@ -27,6 +27,9 @@ function Estoque() {
 
     const handleChange = (e) => { 
         setInputs(values => ({...values, [e.target.name]: e.target.value }))
+    }
+    const handleUploadChange = (e) => {
+        setFileImg(e.target.files[0])
     }
 /*
     useEffect(() => {
@@ -78,22 +81,23 @@ function Estoque() {
     const HandlerInsertBook = async (e) => {
         e.preventDefault();
         try {
-            /**/
+            /*console.log(inputs);*/
+            
             if (!fileImg.type.startsWith("image")) {
                 console.log("Please select a valide image");
                 return;
             }
+
             //setPreviewImg(URL.createObjectURL(fileImg));
             //console.log(fileImg);
             /**/
-
+            
+            /**/
             const formData = new FormData();
-            formData.append("myImage", fileImg)
-            const { data } = await api.post('/clients', formData);
-            //setItem("");
-            console.log(data);
-            //console.log(formData);
-            //console.log();
+            formData.append("fileImage", fileImg);
+            formData.append("inputFields", JSON.stringify(inputs));
+            //const { data } = await api.post('/clients', formData);
+            console.log(formData);
         } catch (error) {
             console.log(error);
         }
@@ -134,22 +138,38 @@ function Estoque() {
             <Section>
                 <SectionTitle title="Novo Livro" />
                 <div className="button is-warning" data-value="Valor de teste" onClick={HandlerFindBook} /*onClick={idItem === null ? HandlerInsertBook : HandlerUpdateBook}*/ >CLICK ME!</div>
-                <form onSubmit={HandlerInsertBook} encType="multipart/form-data" >
+                {/*}
+                <form  >
                     <label>Campo</label>
                     <input type="file" name="imgTest" placeholder="Escolha" onChange={(e) => setFileImg(e.target.files[0])} />
-                    <button className="button is-warning" type="submit"> MANDAR ME! </button>
                 </form>
-                
-                {/*}
                 
                 <Form idForm="cadLivro" crudForm={true} itemName="Livro" funcSubmit={HandlerInsertBook} />          
                 {*/}
 
                 <div className="level-item">
                     <div className="column is-10">
-                        <form id="cadBook" >
-                            <UploadImgFieldForm label="Capa" inputName="bookCover" value={inputs.capaImg} 
-                            typeImages="image/*" handleChange={(handleChange)} />
+                        <form id="cadBook" onSubmit={HandlerInsertBook} encType="multipart/form-data" >
+                            <div className="field mb-5">
+                                {/*
+                                <label className="label has-text-white">label</label>
+                                <div className="file has-name is-fullwidth">
+                                    <label className="file-label">
+                                        <input type="file" name="imgTest" placeholder="Escolha" onChange={(e) => setFileImg(e.target.files[0])} />
+                                        <span className="file-cta">
+                                            <span className="file-icon">
+                                                <i className="fa fa-upload"></i>
+                                            </span>
+                                            <span className="file-label">
+                                                Anexar imagem…
+                                            </span>
+                                        </span>
+                                        <input className="file-name" defaultValue={fileImg || ""} />
+                                    </label>
+                                </div>*/}
+                            </div>
+                             <UploadImgFieldForm label="Capa" inputName="bookCover" value={fileImg}
+                            typeImages="image/*" handleChange={handleUploadChange} /> 
                             <InputErrorMsg errorMsg="Selecione uma imagem válida." />
 
                             <FieldForm label="Título" inputType="text" inputName="titulo" 
@@ -187,11 +207,12 @@ function Estoque() {
                             icon="percent-sign" handleChange={handleChange} />
                             <InputErrorMsg errorMsg="Digite um valor válido." />
 
-                            <TextFieldForm label="Descrição" placeholder="Uma breve descrição sobre o livro" 
+                            <TextFieldForm label="Descrição" inputName="descricao" placeholder="Uma breve descrição sobre o livro" 
                             value={inputs.descricao} handleChange={handleChange} />
                             <InputErrorMsg errorMsg="Escreva um texto válido." />
                     
-                            <SubmitButton />
+                            {/*<SubmitButton />*/}
+                            <button className="button is-warning" type="submit"> MANDAR ME! </button>
                         </form>
                     </div>
                 </div>
