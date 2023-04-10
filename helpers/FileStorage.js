@@ -13,50 +13,48 @@ const isFileValid = (file) => {
 
 const rename = (file, pathDir, fileName) => {
     try {
-        fs.renameSync(file.filepath, path.join(pathDir, fileName));
+        const nameImage = path.join(pathDir, fileName);
+        fs.renameSync(file.filepath, nameImage);
         return {
             success: true,
-            message: "Renamed!",
+            content: fileName,
         };
     } catch (error) {
         return {
             success: false,
-            message: error,
+            content: error,
         };
     }
 }
 
-const saveOnDatabase = () => {
+export const deleteFile = (pathName) => {
     try {
-        //const newFile = await SaveFile();
+        fs.unlinkSync(pathName);
         return {
             success: true,
-            message: "New image saved!",
-        };
+            message: "File deleted!"
+        }
     } catch (error) {
         return {
             success: false,
-            message: error,
-        };
+            message: error
+        }
     }
 }
 
-export default async (files, pathDir) => {
-    if (!files.myImage.length) {
-        const file = files.myImage;
+export default async (fileUpload, pathDir) => {
+    if (!fileUpload.length) {
+        const file = fileUpload;
         const isValid = isFileValid(file);
         const fileName = encodeURIComponent(file.originalFilename.replace("/\s/g", "-"));
 
         if (!isValid) {
             return { 
                 success: false, 
-                message: "Invalid type file",
+                content: "Invalid type file",
             }; 
         }
-        const renamed = rename(file, pathDir, fileName);
-        const saved = saveOnDatabase();
-
-        return { renamed, saved }
+        return rename(file, pathDir, fileName);
     }
 }
 

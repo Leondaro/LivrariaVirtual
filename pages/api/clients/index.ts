@@ -3,7 +3,6 @@ import { ObjectId } from "mongodb";
 import FileStorage from "../../../helpers/FileStorage";
 import Formidable from "formidable";
 import path, { join } from "path";
-import fs from "fs";
 //import no from ""
 //import path from "path";
 //import { inspect } from "util";
@@ -11,13 +10,13 @@ import fs from "fs";
 
 
 export default async function Handler(req, res) {
-    const { method, body } = req;
+    const { method } = req;
 
     switch(method) {
         case 'GET':
             try {
                 const { db } = await connectionDB();
-                const cursor = await db.collection('planets').find({}).toArray();
+                const cursor = await db.collection('livros').find({}).toArray();
                 //client.close();
                 res.status(200).json({ method: "get", success: true, content: cursor });
             } catch (error) {
@@ -28,41 +27,33 @@ export default async function Handler(req, res) {
         case 'POST':
             try {
                 //const { img } = req.body;
-                
                 //if (!item) throw res.status(400).json({ method: "post", success: false, data: error });
-                /*
-                const objId = new ObjectId();
-                const obj = { 
-                    _id: objId, 
-                    name: "Kronos", 
-                    orderFromSun: 9, 
-                    hasRings: false, 
-                    mainAtmosphere: [], 
-                    surfaceTemperatureC: {}
-                }*/
-                //const { db, client } = await connectionDB();
-                //const result = await db.collection("planets").insertOne(obj)
-
+                //const objId = new ObjectId();
+               
                 const form = new Formidable.IncomingForm();
                 const uploadFolder = path.join(__dirname, "../../../../public/upload/products");
                 form.maxFileSize = 50 * 1024 * 1024;
                 form.uploadDir = uploadFolder;
+
                 form.parse(req, async (err, fields, files) => {
                     if (err) {
                         console.log("error parsing files");
                         console.log(err);
                         return res.status(400).json({ 
                             method: "post", 
-                            success: false, 
+                            success: false,
                             content: err,
                         });
                     }
-                    //console.log(files);
-                    const result = FileStorage(files, uploadFolder);
-                    console.log(result);
-                });
 
-                res.status(201).json({ method: "post", success: true, content: body });
+                    let inputsData = JSON.parse(fields.inputFields);
+                    const renamed = await FileStorage(files.fileImage, uploadFolder);
+                    if (renamed.success) inputsData.capa = renamed.content;
+
+                    //const { db, client } = await connectionDB();
+                    //const result = await db.collection("livros").insertOne(inputsData);
+                    res.status(201).json({ method: "post", success: true, content: inputsData });
+                });
             } catch (error) {
                 console.log(error);
                 res.status(500).json({ method: "post", success: false, content: error });

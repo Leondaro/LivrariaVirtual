@@ -1,3 +1,4 @@
+import { isNullOrUndefined } from "util";
 import {
     Footer, NavMenu, FieldForm, UploadImgFieldForm, TextFieldForm, UpdateButton, DeleteButton,
     SubmitButton, InputErrorMsg, Section, SectionTitle, TableMenu, TableHead, TableFoot 
@@ -9,9 +10,11 @@ import { useState, useEffect } from "react";
 
 function Estoque() {
     const [inputs, setInputs] = useState([]);
+    const [updates, setUpdates] = useState([]);
     const [item, setItem] = useState([]);
     const [idItem, setIdItem] = useState(null);
-    const [fileImg, setFileImg] = useState([]);
+    const [edit, setEdit] = useState(false);
+    const [fileImage, setfileImage] = useState([]);
     const [previewImg, setPreviewImg] = useState("");
     const [books, setBooks] = useState([]);
     const tableCol = [
@@ -25,39 +28,57 @@ function Estoque() {
         "Desconto"
     ]
 
-    const handleChange = (e) => { 
-        setInputs(values => ({...values, [e.target.name]: e.target.value }))
+    const handleSelectRow = (e) => {
+        handleCleanForm();
+        setIdItem(e.target.parentElement.dataset.id);
+        setEdit(true);
+    }
+    const handleCleanForm = () => {
+        setIdItem(null);
+        setEdit(false);
+        setUpdates([]);
+        setInputs([]);
+        setfileImage([]);
+    }
+    const handleChange = (e) => {
+        //if ((inputs._id === undefined) || (inputs._id === null))
+        setInputs(values => ({...values, [e.target.name]: e.target.value }));
+        if (edit) setUpdates(values => ({...values, [e.target.name]: e.target.value }));
     }
     const handleUploadChange = (e) => {
-        setFileImg(e.target.files[0])
+        setfileImage(e.target.files[0])
     }
-/*
     useEffect(() => {
-        // COMO FAZER UMA CHAMADA GET DENTRO DE USEEFFECT?
-        /*
-        (async () => {
-            try {
-                const { data } = await api.get('/clients');
-                setBooks(data.content);                
-                //console.log(data);
-            } catch (error) {
-                console.log(error);                
-            }
-            //console.log(books);
-        })()
+        if (idItem !== null)
+            books.forEach(book => {
+                if (book._id === idItem) setInputs(values => ({ ...values, ...book }));
+            });
+        //console.log(idItem);
+    }, [idItem])
+    /*
+    useEffect(() => {
+        if (idItem) {
+            setUpdates(values => ({ ...values, "fileImage": fileImage }));   
+        }
+        //console.log(fileImage)
+    }, [fileImage])
+    
+    useEffect(() => {
+        if (Object.keys(inputs).length > 0) console.log(updates);
+    }, [updates])
+    
+    useEffect(() => {
+        if (Object.keys(inputs).length > 0 && edit) 
+        {
+            //setUpdates(values => ({...values, []:  }));
+            console.log(updates);
+        }
+    }, [inputs])*/
+    /*
+    useEffect(() => {
+        if (!edit) setIdItem("");
+    }, [edit])*/
 
-        // https://www.facebook.com/rocketseat/videos/j%C3%A1-se-deparou-com-o-erro-de-loop-infinito-em-seu-useeffect/129139478508370/
-        // https://morioh.com/p/17935b12ac7e
-        // https://www.devmedia.com.br/consumindo-uma-api-com-react-js-e-axios/42900
-        // https://pt.stackoverflow.com/questions/523136/loop-de-requisi%C3%A7%C3%B5es-no-useeffect
-        api.get('/clients').then( //Promisse dando erro
-            () => {
-                //setBooks(value => [...value, data.content]);
-                console.log(books);
-            }
-        );
-    }, []); 
-    */
     useEffect(() => {
         (async () => {
             api.get('/clients')
@@ -68,12 +89,12 @@ function Estoque() {
         })();
     }, []);
 
-    const HandlerFindBook = async (e) => {
+    const HandlerFindBooks = async (e) => {
         e.preventDefault();
         try {
             const { data } = await api.get('/clients');
-            //setBooks(res.data.content);
-            console.log(data);
+            setBooks(data.content);
+            console.log("data reloaded!")
         } catch (error) {
             console.log(error);
         }
@@ -82,32 +103,35 @@ function Estoque() {
         e.preventDefault();
         try {
             /*console.log(inputs);*/
-            
-            if (!fileImg.type.startsWith("image")) {
+            /*
+            if (!fileImage.type.startsWith("image")) {
                 console.log("Please select a valide image");
                 return;
-            }
-
-            //setPreviewImg(URL.createObjectURL(fileImg));
-            //console.log(fileImg);
-            /**/
-            
+            }//
+            //setPreviewImg(URL.createObjectURL(fileImage));
+            //console.log(fileImage);
             /**/
             const formData = new FormData();
-            formData.append("fileImage", fileImg);
+            formData.append("fileImage", fileImage);
             formData.append("inputFields", JSON.stringify(inputs));
-            //const { data } = await api.post('/clients', formData);
-            console.log(formData);
+            
+            const { data } = await api.post('/clients', formData);
+            console.log(data);
         } catch (error) {
             console.log(error);
         }
     }
     const HandlerUpdateBook = async (e) => {
-        e.preventDefault;
+        e.preventDefault();
         try {
-            const res = await api.put(`/clients/${idItem}`, { item });
-            console.log(res.data);
-            //console.log([idItem, item])
+            const formData = new FormData();
+            formData.append("fileImage", fileImage);
+            formData.append("inputFields", JSON.stringify(updates));
+
+            const { data } = await api.put(`/clients/${idItem}`, formData);
+            handleCleanForm();
+            HandlerFindBooks(e);
+            console.log(data);
         } catch (error) {
             console.log(error);
         }
@@ -137,11 +161,15 @@ function Estoque() {
             </header>
             <Section>
                 <SectionTitle title="Novo Livro" />
-                <div className="button is-warning" data-value="Valor de teste" onClick={HandlerFindBook} /*onClick={idItem === null ? HandlerInsertBook : HandlerUpdateBook}*/ >CLICK ME!</div>
-                {/*}
+                {/*
+                <div className="button is-warning" onClick={() => {setIdItem("642ef4366029549c37ccf2db")}} >UPDATE ID ITEM!</div>
+                <div className="button is-warning" onClick={() => {console.log(idItem)}} >SHOW ID ITEM!</div>
+                <div className="button is-warning" onClick={HandlerDeleteBook} /*onClick={idItem === null ? HandlerInsertBook : HandlerUpdateBook} >DELETE LAST!</div>
+                
+                
                 <form  >
                     <label>Campo</label>
-                    <input type="file" name="imgTest" placeholder="Escolha" onChange={(e) => setFileImg(e.target.files[0])} />
+                    <input type="file" name="imgTest" placeholder="Escolha" onChange={(e) => setfileImage(e.target.files[0])} />
                 </form>
                 
                 <Form idForm="cadLivro" crudForm={true} itemName="Livro" funcSubmit={HandlerInsertBook} />          
@@ -149,13 +177,13 @@ function Estoque() {
 
                 <div className="level-item">
                     <div className="column is-10">
-                        <form id="cadBook" onSubmit={HandlerInsertBook} encType="multipart/form-data" >
+                        <form id="cadBook" onSubmit={ idItem === null ? HandlerInsertBook : HandlerUpdateBook } encType="multipart/form-data" method="post">
                             <div className="field mb-5">
                                 {/*
                                 <label className="label has-text-white">label</label>
                                 <div className="file has-name is-fullwidth">
                                     <label className="file-label">
-                                        <input type="file" name="imgTest" placeholder="Escolha" onChange={(e) => setFileImg(e.target.files[0])} />
+                                        <input type="file" name="imgTest" placeholder="Escolha" onChange={(e) => setfileImage(e.target.files[0])} />
                                         <span className="file-cta">
                                             <span className="file-icon">
                                                 <i className="fa fa-upload"></i>
@@ -164,11 +192,11 @@ function Estoque() {
                                                 Anexar imagem…
                                             </span>
                                         </span>
-                                        <input className="file-name" defaultValue={fileImg || ""} />
+                                        <input className="file-name" defaultValue={fileImage || ""} />
                                     </label>
                                 </div>*/}
                             </div>
-                             <UploadImgFieldForm label="Capa" inputName="bookCover" value={fileImg}
+                             <UploadImgFieldForm label="Capa" inputName="bookCover" value={fileImage}
                             typeImages="image/*" handleChange={handleUploadChange} /> 
                             <InputErrorMsg errorMsg="Selecione uma imagem válida." />
 
@@ -211,8 +239,12 @@ function Estoque() {
                             value={inputs.descricao} handleChange={handleChange} />
                             <InputErrorMsg errorMsg="Escreva um texto válido." />
                     
-                            {/*<SubmitButton />*/}
-                            <button className="button is-warning" type="submit"> MANDAR ME! </button>
+                            
+                            <button className="button is-warning" type="button" onClick={handleCleanForm} > CANCELAR ! </button>
+                            {/*<SubmitButton /
+                            <a className="button is-warning" onClick={() => console.log(idItem)} > CHECAR ME! </a>
+                            >*/}
+                            <button className="button is-warning" type="submit" > MANDAR ME! </button>
                         </form>
                     </div>
                 </div>
@@ -222,23 +254,26 @@ function Estoque() {
                     <UpdateButton />
                     <DeleteButton onClick={HandlerDeleteBook} idTarget={idItem} />
                 </TableMenu>
+                {
+                    books.map((book, index) => <img key={index} src={"/upload/products/"+book.capa} />)
+                }
                 <div className="level-item">
                     <div className="table-container">
-                        <table onLoad={HandlerFindBook} className="table is-hoverable has-background-grey-lighter">
+                        <table onLoad={HandlerFindBooks} className="table is-hoverable has-background-grey-lighter">
                             <TableHead columns={tableCol} />
                             <TableFoot columns={tableCol} />
                             <tbody>
                                 {
                                     books.map((book, index) =>
-                                        <tr key={index}>
-                                            <td>{book._id /*.titulo*/}</td>
-                                            <td>{book.name /*.autor*/}</td>
-                                            <td>{book.orderFromSun /*.editora*/}</td>
-                                            <td>{book.hasRings /*.genero*/}</td>
-                                            <td>{book.mainAtmosphere[0] /*.ano*/}</td>
-                                            <td>{book.mainAtmosphere[1] /*.descricao*/}</td>
-                                            <td>{book.mainAtmosphere[2] /*.preco*/}</td>
-                                            <td>{book.name /*.desconto*/}</td>
+                                        <tr key={index} data-id={book._id} onClick={handleSelectRow} >
+                                            <td >{book.titulo}</td>
+                                            <td>{book.autor}</td>
+                                            <td>{book.editora}</td>
+                                            <td>{book.genero}</td>
+                                            <td>{book.ano}</td>
+                                            <td>{book.capa}</td>
+                                            <td>{book.preco}</td>
+                                            <td>{book.desconto}</td>
                                         </tr>
                                     )
                                 }

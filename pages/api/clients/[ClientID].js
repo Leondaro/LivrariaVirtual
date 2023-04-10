@@ -1,6 +1,9 @@
-import client from "../../../services/api";
-import connectionDB from "../../../services/connectionDB";
+import Formidable from "formidable";
+import path, { join } from "path";
 import { ObjectId } from "mongodb";
+import FileStorage, { deleteFile } from "../../../helpers/FileStorage";
+//import client from "../../../services/api";
+import connectionDB from "../../../services/connectionDB";
 
 export default async function Handler(req, res) {
     const { method } = req;
@@ -9,17 +12,45 @@ export default async function Handler(req, res) {
     switch(method) {
         case 'PUT':
             try {
-                //const id = ClientID;
-                //const { item } = req.body;
                 //if (!name, !email) throw "Invalid data"
-                const objId = new ObjectId("64264b2eac8c6cdb798843cf");
-                
-                const { db, client } = await connectionDB();
-                const result = await db.collection('planets').updateOne(
-                    { _id: objId }, { $set: { hasRings: true} });
-                client.close();
-                //await connectionDb().insertOne({ _id:clientID }, { name, email })
-                res.status(200).json({ method: "put", success: true, content: result });
+
+                const id = ClientID;
+                const objId = new ObjectId(id);
+                const form = new Formidable.IncomingForm();
+                const uploadFolder = path.join(__dirname, "../../../../../public/upload/products/");
+                form.maxFileSize = 50 * 1024 * 1024;
+                form.uploadDir = uploadFolder;
+                /**/ 
+                form.parse(req, async (err, fields, files) => {
+                    if (err) {
+                        console.log("Error parsing files.");
+                        console.log(err);
+                    }
+                    
+                    const { db, client } = await connectionDB();
+                    let formData = JSON.parse(fields.inputFields);
+                    let finalResult = [];
+
+                    if (formData.length === 0)
+                        formData = {}
+                    if (files.fileImage !== null && files.fileImage !== undefined) {
+                        const doc = await db.collection('livros').findOne(
+                            { _id: objId },
+                            { capa: 1 }
+                        );
+                        const msg = deleteFile(uploadFolder+doc.capa);
+                        finalResult.push(msg);
+                        
+                        const renameNewFile = await FileStorage(files.fileImage, uploadFolder);
+                        if (renameNewFile.success) formData.capa = renameNewFile.content;
+                    }
+                    const queryResult = await db.collection('livros').updateOne(
+                        { _id: objId }, { $set: formData }
+                    );
+                    finalResult.push(queryResult, formData, uploadFolder);
+
+                    res.status(200).json({ method: "put", success: true, content: finalResult });
+                });
             } catch (error) {
                 console.log(error);
                 res.status(500).json({ method: "put", success: false, content: error });
@@ -27,13 +58,12 @@ export default async function Handler(req, res) {
         break;
         case 'DELETE':
             try {
-                //const id = ClientID;
-                const objId = new ObjectId("64264b2eac8c6cdb798843cf");
-                
+                const id = ClientID;
+                const objId = new ObjectId(id);
+
                 const { db, client } = await connectionDB();
-                const result = await db.collection("planets").deleteOne({_id: objId})
-                client.close();
-                //await connectionDb.deleteOne({ _id:clientID });
+                const result = await db.collection("livros").deleteOne({_id: objId})
+                //client.close();
                 res.status(201).json({ method: "delete", success: true, content: result });
             } catch (error) {
                 console.log(error);
@@ -42,3 +72,9 @@ export default async function Handler(req, res) {
         break;
     }    
 }
+/**/
+export const config = {
+    api: {
+      bodyParser: false,
+    },
+  };
