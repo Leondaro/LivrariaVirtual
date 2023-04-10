@@ -34,7 +34,8 @@ export default async function Handler(req, res) {
                 const uploadFolder = path.join(__dirname, "../../../../public/upload/products");
                 form.maxFileSize = 50 * 1024 * 1024;
                 form.uploadDir = uploadFolder;
-
+                let finalResult = [];
+                /**/
                 form.parse(req, async (err, fields, files) => {
                     if (err) {
                         console.log("error parsing files");
@@ -45,14 +46,15 @@ export default async function Handler(req, res) {
                             content: err,
                         });
                     }
+                    
+                    let formData = JSON.parse(fields.inputFields);
+                    const renameNewFile = await FileStorage(files.fileImage, uploadFolder);
+                    if (renameNewFile.success) formData.capa = renameNewFile.content;
 
-                    let inputsData = JSON.parse(fields.inputFields);
-                    const renamed = await FileStorage(files.fileImage, uploadFolder);
-                    if (renamed.success) inputsData.capa = renamed.content;
-
-                    //const { db, client } = await connectionDB();
-                    //const result = await db.collection("livros").insertOne(inputsData);
-                    res.status(201).json({ method: "post", success: true, content: inputsData });
+                    const { db, client } = await connectionDB();
+                    const queryResult = await db.collection("livros").insertOne(formData);
+                    finalResult.push(formData, queryResult);
+                    res.status(201).json({ method: "post", success: true, content: finalResult });
                 });
             } catch (error) {
                 console.log(error);

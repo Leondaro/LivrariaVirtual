@@ -116,6 +116,8 @@ function Estoque() {
             formData.append("inputFields", JSON.stringify(inputs));
             
             const { data } = await api.post('/clients', formData);
+            handleCleanForm();
+            HandlerFindBooks(e);
             console.log(data);
         } catch (error) {
             console.log(error);
@@ -136,11 +138,12 @@ function Estoque() {
             console.log(error);
         }
     }
-    const HandlerDeleteBook = async () => {
+    const HandlerDeleteBook = async (e) => {
         try {
-            const res = await api.delete(`/clients/${idItem}`);
-            console.log(res.data);
-            //console.log(idItem)
+            const { data } = await api.delete(`/clients/${idItem}`);
+            handleCleanForm();
+            HandlerFindBooks(e);
+            console.log(data);
         } catch (error) {
             console.log(error);
         }
@@ -252,10 +255,11 @@ function Estoque() {
                 <SectionTitle title="Estoque" />
                 <TableMenu inputContent={item} >
                     <UpdateButton />
-                    <DeleteButton onClick={HandlerDeleteBook} idTarget={idItem} />
+                    <DeleteButton idTarget={idItem} />
+                    <button className="button is-warning" type="button" onClick={HandlerDeleteBook} > DELETAR ! </button>
                 </TableMenu>
                 {
-                    books.map((book, index) => <img key={index} src={"/upload/products/"+book.capa} />)
+                    //books.map((book, index) => <img key={index} src={"/upload/products/"+book.capa} />)
                 }
                 <div className="level-item">
                     <div className="table-container">

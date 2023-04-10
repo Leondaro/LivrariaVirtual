@@ -20,6 +20,7 @@ export default async function Handler(req, res) {
                 const uploadFolder = path.join(__dirname, "../../../../../public/upload/products/");
                 form.maxFileSize = 50 * 1024 * 1024;
                 form.uploadDir = uploadFolder;
+                let finalResult = [];
                 /**/ 
                 form.parse(req, async (err, fields, files) => {
                     if (err) {
@@ -29,7 +30,7 @@ export default async function Handler(req, res) {
                     
                     const { db, client } = await connectionDB();
                     let formData = JSON.parse(fields.inputFields);
-                    let finalResult = [];
+                    
 
                     if (formData.length === 0)
                         formData = {}
@@ -47,8 +48,7 @@ export default async function Handler(req, res) {
                     const queryResult = await db.collection('livros').updateOne(
                         { _id: objId }, { $set: formData }
                     );
-                    finalResult.push(queryResult, formData, uploadFolder);
-
+                    finalResult.push(queryResult, formData);
                     res.status(200).json({ method: "put", success: true, content: finalResult });
                 });
             } catch (error) {
@@ -60,11 +60,19 @@ export default async function Handler(req, res) {
             try {
                 const id = ClientID;
                 const objId = new ObjectId(id);
+                const uploadFolder = path.join(__dirname, "../../../../../public/upload/products/");
+                let finalResult = [];
 
                 const { db, client } = await connectionDB();
-                const result = await db.collection("livros").deleteOne({_id: objId})
-                //client.close();
-                res.status(201).json({ method: "delete", success: true, content: result });
+                const doc = await db.collection('livros').findOne(
+                    { _id: objId },
+                    { capa: 1 }
+                );
+                const msg = deleteFile(uploadFolder+doc.capa);
+                const queryResult = await db.collection("livros").deleteOne({_id: objId});
+                finalResult.push(msg, queryResult);
+
+                res.status(201).json({ method: "delete", success: true, content: finalResult });
             } catch (error) {
                 console.log(error);
                 res.status(200).json({ method: "delete", success: false, content: error });
