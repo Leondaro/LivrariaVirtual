@@ -11,7 +11,7 @@ const Card = ({urlImage, autor, titulo, preco, precoDesconto}) => {
                     <div className="card-content">
                         <div className="media-content">
                             <CardHeader autor={autor} titulo={titulo} />
-                            <CardContent preco={preco} precoDesconto={precoDesconto} />
+                            <CardContent preco={"R$ "+preco} precoDesconto={"R$ "+precoDesconto} />
                         </div>
                     </div>
                 </div>

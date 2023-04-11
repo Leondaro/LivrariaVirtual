@@ -164,42 +164,10 @@ function Estoque() {
             </header>
             <Section>
                 <SectionTitle title="Novo Livro" />
-                {/*
-                <div className="button is-warning" onClick={() => {setIdItem("642ef4366029549c37ccf2db")}} >UPDATE ID ITEM!</div>
-                <div className="button is-warning" onClick={() => {console.log(idItem)}} >SHOW ID ITEM!</div>
-                <div className="button is-warning" onClick={HandlerDeleteBook} /*onClick={idItem === null ? HandlerInsertBook : HandlerUpdateBook} >DELETE LAST!</div>
-                
-                
-                <form  >
-                    <label>Campo</label>
-                    <input type="file" name="imgTest" placeholder="Escolha" onChange={(e) => setfileImage(e.target.files[0])} />
-                </form>
-                
-                <Form idForm="cadLivro" crudForm={true} itemName="Livro" funcSubmit={HandlerInsertBook} />          
-                {*/}
-
                 <div className="level-item">
                     <div className="column is-10">
                         <form id="cadBook" onSubmit={ idItem === null ? HandlerInsertBook : HandlerUpdateBook } encType="multipart/form-data" method="post">
-                            <div className="field mb-5">
-                                {/*
-                                <label className="label has-text-white">label</label>
-                                <div className="file has-name is-fullwidth">
-                                    <label className="file-label">
-                                        <input type="file" name="imgTest" placeholder="Escolha" onChange={(e) => setfileImage(e.target.files[0])} />
-                                        <span className="file-cta">
-                                            <span className="file-icon">
-                                                <i className="fa fa-upload"></i>
-                                            </span>
-                                            <span className="file-label">
-                                                Anexar imagem…
-                                            </span>
-                                        </span>
-                                        <input className="file-name" defaultValue={fileImage || ""} />
-                                    </label>
-                                </div>*/}
-                            </div>
-                             <UploadImgFieldForm label="Capa" inputName="bookCover" value={fileImage}
+                            <UploadImgFieldForm label="Capa" inputName="bookCover" value={fileImage}
                             typeImages="image/*" handleChange={handleUploadChange} /> 
                             <InputErrorMsg errorMsg="Selecione uma imagem válida." />
 
@@ -243,6 +211,7 @@ function Estoque() {
                             <InputErrorMsg errorMsg="Escreva um texto válido." />
                     
                             
+                            <button className="button is-warning" type="button" onClick={HandlerDeleteBook} > DELETAR ! </button>
                             <button className="button is-warning" type="button" onClick={handleCleanForm} > CANCELAR ! </button>
                             {/*<SubmitButton /
                             <a className="button is-warning" onClick={() => console.log(idItem)} > CHECAR ME! </a>
@@ -253,14 +222,6 @@ function Estoque() {
                 </div>
                 
                 <SectionTitle title="Estoque" />
-                <TableMenu inputContent={item} >
-                    <UpdateButton />
-                    <DeleteButton idTarget={idItem} />
-                    <button className="button is-warning" type="button" onClick={HandlerDeleteBook} > DELETAR ! </button>
-                </TableMenu>
-                {
-                    //books.map((book, index) => <img key={index} src={"/upload/products/"+book.capa} />)
-                }
                 <div className="level-item">
                     <div className="table-container">
                         <table onLoad={HandlerFindBooks} className="table is-hoverable has-background-grey-lighter">

@@ -1,32 +1,39 @@
 import Card from "./Card";
 
-const CollectionCards = (query) => {
-    let card = {
-        urlImage: "_img\\livros_pop\\01.jpg",
-        titulo: "Mais Esperto Que o Diabo", 
-        autor: "Ele Mesmo",
-        preco: "Muito Caro",
-        precoDesconto: "Bom Desconto"
-    }
-    const dataCards = [
-        [card, card, card],
+const CollectionCards = ({ items }) => {
+    const cols = [
+        [1, 2, 3, 4]
     ]
     
-    const rows = dataCards.map((row) => 
-        <div className="columns">{row.map((card) => 
+    const row = () => 
+        <div className="columns">{cols.map((col) => 
             <>
-                <Card
-                    urlImage={card.urlImage}
-                    titulo={card.titulo}
-                    autor={card.autor}
-                    preco={card.preco}
-                    precoDesconto={card.precoDesconto}
+                <Card key={items._id} 
+                    urlImage={items.capa}
+                    titulo={items.titulo}
+                    autor={items.autor}
+                    preco={items.preco}
+                    precoDesconto={"precoDesconto"}
                 />
-            </>)}
+            </>
+            )}
         </div>
-    )
 
-    return <>{rows}</>
+    return <>{row}</>
+    /*
+    return (<> 
+                {.map((col) =>
+                    <Card key={items._id}
+                        urlImage={items.capa}
+                        titulo={items.titulo}
+                        autor={items.autor}
+                        preco={items.preco}
+                        precoDesconto={"precoDesconto"}
+                    />
+                )}
+         
+    </>)
+    */
 }
 
 export default CollectionCards;
