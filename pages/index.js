@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { SingIn } from "../components";
 
 function Login() {
@@ -30,26 +30,6 @@ function Login() {
                 </div >
             </section >
         </>
-    );
-}
-
-function UploadForm() {
-    const [image, setImage] = useState('');
-
-    const uploadImage = async e => {
-        e.preventDefault();
-        console.log(image);
-    }
-
-    return (
-        <form className="container" onSubmit={uploadImage}>
-            <div className="level">
-                <input type="file" name="image" onChange={e => setImage(e.target.files[0])} />
-            </div>
-            <div className="level">
-                <button type="submit">Enviar</button>
-            </div>
-        </form>
     );
 }
 

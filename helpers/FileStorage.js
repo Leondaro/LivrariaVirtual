@@ -57,12 +57,3 @@ export default async (fileUpload, pathDir) => {
         return rename(file, pathDir, fileName);
     }
 }
-
-/*
-export default async (file) => {
-    const data = fs.readFileSync(file.path);
-    fs.writeFileSync(`../public/upload/products${file.name}`, data);
-    await fs.unlinkSync(file.path);
-    return "GEISSOONN";
-}
-*/

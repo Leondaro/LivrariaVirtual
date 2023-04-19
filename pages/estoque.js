@@ -1,20 +1,17 @@
-import {
-    Footer, NavMenu, FieldForm, UploadImgFieldForm, TextFieldForm, 
-    InputErrorMsg, Section, SectionTitle, TableHead, TableFoot 
-} from "../components";
 import api from "../services/api";
 import { useState, useEffect } from "react";
-//import UploadImage from "../helpers/uploadImage";
+import { Footer, NavMenu, FieldForm, UploadImgFieldForm, TextFieldForm, 
+        InputErrorMsg, Section, SectionTitle, TableHead, TableFoot 
+} from "../components";
 
 
 function Estoque() {
     const [inputs, setInputs] = useState([]);
     const [updates, setUpdates] = useState([]);
-    const [item, setItem] = useState([]);
     const [idItem, setIdItem] = useState(null);
     const [edit, setEdit] = useState(false);
     const [fileImage, setfileImage] = useState([]);
-    const [previewImg, setPreviewImg] = useState("");
+    //const [previewImg, setPreviewImg] = useState("");
     const [books, setBooks] = useState([]);
     const tableCol = [
         "Título", 
@@ -40,7 +37,6 @@ function Estoque() {
         setfileImage([]);
     }
     const handleChange = (e) => {
-        //if ((inputs._id === undefined) || (inputs._id === null))
         setInputs(values => ({...values, [e.target.name]: e.target.value }));
         if (edit) setUpdates(values => ({...values, [e.target.name]: e.target.value }));
     }
@@ -52,31 +48,7 @@ function Estoque() {
             books.forEach(book => {
                 if (book._id === idItem) setInputs(values => ({ ...values, ...book }));
             });
-        //console.log(idItem);
     }, [idItem])
-    /*
-    useEffect(() => {
-        if (idItem) {
-            setUpdates(values => ({ ...values, "fileImage": fileImage }));   
-        }
-        //console.log(fileImage)
-    }, [fileImage])
-    
-    useEffect(() => {
-        if (Object.keys(inputs).length > 0) console.log(updates);
-    }, [updates])
-    
-    useEffect(() => {
-        if (Object.keys(inputs).length > 0 && edit) 
-        {
-            //setUpdates(values => ({...values, []:  }));
-            console.log(updates);
-        }
-    }, [inputs])*/
-    /*
-    useEffect(() => {
-        if (!edit) setIdItem("");
-    }, [edit])*/
 
     useEffect(() => {
         (async () => {
@@ -101,14 +73,12 @@ function Estoque() {
     const HandlerInsertBook = async (e) => {
         e.preventDefault();
         try {
-            /*console.log(inputs);*/
             /*
             if (!fileImage.type.startsWith("image")) {
                 console.log("Please select a valide image");
                 return;
             }//
             //setPreviewImg(URL.createObjectURL(fileImage));
-            //console.log(fileImage);
             /**/
             const formData = new FormData();
             formData.append("fileImage", fileImage);
@@ -212,9 +182,6 @@ function Estoque() {
                             
                             <button className="button is-warning" type="button" onClick={HandlerDeleteBook} > DELETAR ! </button>
                             <button className="button is-warning" type="button" onClick={handleCleanForm} > CANCELAR ! </button>
-                            {/*<SubmitButton /
-                            <a className="button is-warning" onClick={() => console.log(idItem)} > CHECAR ME! </a>
-                            >*/}
                             <button className="button is-warning" type="submit" > MANDAR ME! </button>
                         </form>
                     </div>

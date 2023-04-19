@@ -1,28 +1,14 @@
 import { useState, useEffect } from "react";
 import api from "../services/api";
+import calcDiscount from "../helpers/CalcDiscount"
 import { NavMenu, Footer, Section, SectionTitle, Card } from "../components";
 
 
 function Home() {
-    //Dados retornados de uma consulda devem ser enviados
-    //para o componente CollectionCards.
     const [books, setBooks] = useState([]);
     const [rows, setRows] = useState([0]);
     const cols = [0, 1, 2, 3]
     const ratio = cols.length;
-
-    const precoDesconto = (sale, price) => {
-        sale = parseFloat(sale, 2);
-        price = parseFloat(price, 2);
-        let result = ((100-sale)/100)*price;
-
-        result = Number((result).toFixed(2)).toString();
-        let newPrice = result.split(".").shift();
-        let decimal = result.split(".").pop();
-        if (decimal.length < 2) decimal += "0";
-
-        return newPrice+","+decimal;
-    }
 
     useEffect(() => {
         (async () => {
@@ -68,7 +54,7 @@ function Home() {
                                                 autor={books[col+(row*ratio)].autor}
                                                 preco={books[col+(row*ratio)].preco}
                                                 precoDesconto={
-                                                    precoDesconto(books[col+(row*ratio)].desconto, 
+                                                    calcDiscount(books[col+(row*ratio)].desconto, 
                                                     books[col+(row*ratio)].preco)
                                                 }
                                             />

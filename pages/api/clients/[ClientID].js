@@ -2,7 +2,6 @@ import Formidable from "formidable";
 import path, { join } from "path";
 import { ObjectId } from "mongodb";
 import FileStorage, { deleteFile } from "../../../helpers/FileStorage";
-//import client from "../../../services/api";
 import connectionDB from "../../../services/connectionDB";
 
 export default async function Handler(req, res) {
@@ -12,8 +11,6 @@ export default async function Handler(req, res) {
     switch(method) {
         case 'PUT':
             try {
-                //if (!name, !email) throw "Invalid data"
-
                 const id = ClientID;
                 const objId = new ObjectId(id);
                 const form = new Formidable.IncomingForm();
@@ -21,7 +18,7 @@ export default async function Handler(req, res) {
                 form.maxFileSize = 50 * 1024 * 1024;
                 form.uploadDir = uploadFolder;
                 let finalResult = [];
-                /**/ 
+
                 form.parse(req, async (err, fields, files) => {
                     if (err) {
                         console.log("Error parsing files.");
@@ -80,7 +77,7 @@ export default async function Handler(req, res) {
         break;
     }    
 }
-/**/
+
 export const config = {
     api: {
       bodyParser: false,
