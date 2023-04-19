@@ -1,3 +1,5 @@
+import MenuBurger from "./MenuBurger";
+
 function AsideMenu() {
     return(
         <>
@@ -9,13 +11,7 @@ function AsideMenu() {
                                 Categorias
                             </p>
                         </div>
-                        <div className="">
-                            <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="asideMenu">
-                                <span aria-hidden="true"></span>
-                                <span aria-hidden="true"></span>
-                                <span aria-hidden="true"></span>
-                            </a>
-                        </div>
+                        <MenuBurger targetEl={"asideMenu"} />
                     </div>
                     <div id="asideMenu" className="navbar-menu">
                         <ul className="menu-list">

@@ -1,10 +1,6 @@
-import NavMenu from "../components/NavMenu";
-import Footer from "../components/Footer";
-import Section from "../components/Section";
-import SectionTitle from "../components/SectionTitle";
-import api from "../services/api";
 import { useState, useEffect } from "react";
-import Card from "../components/Card";
+import api from "../services/api";
+import { NavMenu, Footer, Section, SectionTitle, Card } from "../components";
 
 
 function Home() {

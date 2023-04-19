@@ -1,9 +1,9 @@
-import AsideMenu from "../components/AsideMenu";
+import { AsideMenu } from "../";
 
 const Section = ({aside, children}) => {
     return (
         <>
-            <section className="section mt-7 mb-5 is-translucid-grey is-framed-top-burgundy is-framed-bottom-burgundy">
+            <section className="section mt-7 mb-7 is-translucid-grey is-framed-top-burgundy is-framed-bottom-burgundy">
                 <div className="level is-flex is-justify-content-center">
                     <div className="columns home-content">
                         { aside === "true" ? <AsideMenu /> : null }

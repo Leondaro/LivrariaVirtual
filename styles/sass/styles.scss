@@ -38,8 +38,8 @@ $pagination-current-border-color: $burgundy;
 // VALORES AUXILIARES
 $zero: 0;
 $webkit-fill: -webkit-fill-available;
-$mt-7: 4.5rem;
-$mt-8: 6rem;
+$m-7: 4.5rem;
+$m-8: 6rem;
 
 @import "../../node_modules/bulma/bulma.sass";
 @import "../../node_modules/rbx/index.sass";
@@ -53,6 +53,7 @@ html, body {
     overflow: auto;
 }
 body { background-image: $wallpaper; background-size: 100%; }
+.icon { width: 8rem; margin: .5rem, 3rem; }
 .footer { 
     //background-color: rgba(0, 0, 0, 0);
     bottom: $zero;
@@ -62,11 +63,13 @@ body { background-image: $wallpaper; background-size: 100%; }
     max-width: 18rem;
     margin: auto;
 }
-.mt-7 { margin-top: $mt-7; }
-.mt-8 { margin-top: $mt-8; }
+.mt-7 { margin-top: $m-7; }
+.mb-7 { margin-bottom: $m-7; }
+.mt-8 { margin-top: $m-8; }
+.navbar-burger > span { pointer-events: none; }
 .is-justify-content-center { justify-content: center; }
 .is-scratched { text-decoration: line-through; }
-.is-menu-logo { width: 7rem; }
+.is-menu-logo { width: 8rem; margin: .5rem 3rem; }
 .is-index-logo { width: 16rem; }
 .is-translucid-grey { background: $translucid-grey; }
 .showcase-image { max-height: 15rem; }

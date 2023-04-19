@@ -1,9 +1,4 @@
-import NavMenu from "../components/NavMenu";
-import Footer from "../components/Footer";
-import Section from "../components/Section";
-import SectionTitle from "../components/SectionTitle";
-import CollectionCards from "../components/CollectionCards";
-import Pagination from "../components/Pagination";
+import { NavMenu, Footer, Section, SectionTitle, Pagination } from "../components";
 
 function Acervo() {
     return (
@@ -20,7 +15,7 @@ function Acervo() {
             </header>
             <Section aside="true">
                 <SectionTitle title="Acervo" />
-                <CollectionCards />
+
                 <Pagination />
             </Section>
             <Footer />

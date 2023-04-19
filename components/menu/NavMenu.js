@@ -1,17 +1,20 @@
+import MenuBurger from "./MenuBurger";
+
 function NavMenu() {
     return (
         <nav className="navbar is-framed-bottom-burgundy">
             <div className="container">
                 <div className="level-item">
-                    <figure className="image is-default-logo ml-4 mb-2">
+                    <figure className="image is-menu-logo ml-4 mb-2">
                         <a href="home"><img src="_img/LivrariaLogo.png" /></a>
                     </figure>
                 </div>
             </div>
 
-            <div className="navbar-end level-item">
-                <div className="level is-mobile">
-                    <div className="level-item level-right">
+            <MenuBurger targetEl={"mainMenu"} />
+            <div id="mainMenu" className="navbar-menu navbar-end level-item">
+                <div className="is-flex">
+                    <div className="columns is-marginless">
                         <div className="navbar-item">
                             <span className="tag is-rounded is-small"><strong>Bem-vindo,
                                 Visitante!</strong></span>
