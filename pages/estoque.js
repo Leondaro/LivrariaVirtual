@@ -179,10 +179,11 @@ function Estoque() {
                             value={inputs.descricao} handleChange={handleChange} />
                             <InputErrorMsg errorMsg="Escreva um texto válido." />
                     
-                            
-                            <button className="button is-warning" type="button" onClick={HandlerDeleteBook} > DELETAR ! </button>
-                            <button className="button is-warning" type="button" onClick={handleCleanForm} > CANCELAR ! </button>
-                            <button className="button is-warning" type="submit" > MANDAR ME! </button>
+                            <div className="level-item">
+                                <button className="button is-warning" type="button" onClick={HandlerDeleteBook} > DELETAR ! </button>
+                                <button className="button is-warning m-line" type="button" onClick={handleCleanForm} > CANCELAR ! </button>
+                                <button className="button is-warning" type="submit" > MANDAR ME! </button>
+                            </div>
                         </form>
                     </div>
                 </div>

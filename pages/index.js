@@ -5,9 +5,14 @@ function Login() {
     return (
         <>
             <div>
-                <meta name="robots" content="Index, follow" />
+                <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta name="content-language" content="pt-br" />
                 <meta name="author" content="Conatto" />
-                <meta name="description" content="Site sobre..." />
+                <meta name="description" content="Um exemplo de uma aplicação web para venda de livros" />
+                <meta name="keywords" content="portfolio, aplicação web, livraria, livros, livraria virtual" />
+                <meta name="robots" content="Index, follow" />
+
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
                 <title>Bem-Vindo! - Livraria Virtual</title>
             </div>
