@@ -10,7 +10,7 @@ function Footer() {
                 </div>
                 <div className="columns level-item is-mobile">
                     <div className="column is-narrow">
-                        <a href="https://github.com/Conatto" className="fa fa-github fa-3x"></a>
+                        <h3 class="title-footer"><a className="has-text-white" href="https://conatto-portfolio.vercel.app/">Saiba mais.</a></h3>
                     </div>
                 </div>
             </div>

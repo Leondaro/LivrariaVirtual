@@ -58,6 +58,10 @@ body { background-image: $wallpaper; background-size: 100%; }
     //background-color: rgba(0, 0, 0, 0);
     bottom: $zero;
     width: $webkit-fill;
+    padding: 3rem 1.5rem 1rem;
+}
+.title-footer {
+    margin: 1rem 0;
 }
 .box-card {
     max-width: 18rem;
@@ -66,6 +70,7 @@ body { background-image: $wallpaper; background-size: 100%; }
 .mt-7 { margin-top: $m-7; }
 .mb-7 { margin-bottom: $m-7; }
 .mt-8 { margin-top: $m-8; }
+.m-line { margin-inline: 2rem; }
 .navbar-burger > span { pointer-events: none; }
 .is-justify-content-center { justify-content: center; }
 .is-scratched { text-decoration: line-through; }
