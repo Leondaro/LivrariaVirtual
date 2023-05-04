@@ -3,6 +3,7 @@ export { default as Footer } from "./footer/Footer";
 export { default as NavMenu } from "./menu/NavMenu";
 export { default as AsideMenu } from "./menu/AsideMenu";
 export { default as Card } from "./card/Card";
+export { default as CardPlaceholder } from "./card/CardPlaceholder";
 export { default as FieldForm } from "./form/FieldForm";
 export { default as EmailField } from "./form/EmailField";
 export { default as PasswordField } from "./form/PasswordField";

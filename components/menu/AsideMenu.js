@@ -3,7 +3,7 @@ import MenuBurger from "./MenuBurger";
 function AsideMenu() {
     return(
         <>
-            <div className="column is-2 pt-0">
+            <div className="column pt-0">
                 <aside className="menu box">
                     <div className="navbar-brand level is-marginless">
                         <div className="level-item  is-marginless">

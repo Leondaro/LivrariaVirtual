@@ -1,6 +1,8 @@
-import { NavMenu, Footer, Section, SectionTitle, Pagination } from "../components";
+import { NavMenu, Footer, Section, SectionTitle, CardPlaceholder, Pagination } from "../components";
 
 function Acervo() {
+    const cols = [0, 1, 2, 3]
+    
     return (
         <>
             <div>
@@ -15,7 +17,13 @@ function Acervo() {
             </header>
             <Section aside="true">
                 <SectionTitle title="Acervo" />
-
+                <div className="card-columns">
+                    {cols.map(col => {
+                        return (
+                            <CardPlaceholder key={col} />
+                        )
+                    })}
+                </div>
                 <Pagination />
             </Section>
             <Footer />

@@ -1,31 +1,40 @@
 import { useState, useEffect } from "react";
 import api from "../services/api";
 import calcDiscount from "../helpers/CalcDiscount"
-import { NavMenu, Footer, Section, SectionTitle, Card } from "../components";
+import { NavMenu, Footer, Section, SectionTitle, Card, CardPlaceholder } from "../components";
 
 
 function Home() {
     const [books, setBooks] = useState([]);
     const [rows, setRows] = useState([0]);
+    const [isLoading, setIsLoading] = useState(false);
     const cols = [0, 1, 2, 3]
     const ratio = cols.length;
 
+    const HandlerGetBooks = async () => {
+        try {
+            setIsLoading(true);
+            const { data } = await api.get('/clients');
+            setBooks(data.content);
+            console.log("data ready!")
+            setIsLoading(false);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         (async () => {
-            api.get('/clients')
-            .then(({ data }) => {
-                console.log("data ready!")
-                setBooks(data.content)
-            });
+            HandlerGetBooks();
         })();
     }, []);
-
     useEffect(()=> {
         const rowsAmount = books.length/cols.length;
-        if (rows.length < rowsAmount)
+        if (rows.length < rowsAmount) {
             for (let index = 1; index < rowsAmount; index++) {
                 setRows(values => ([...values, index]));
             }
+        }
     }, [books])
 
     return (
@@ -42,28 +51,45 @@ function Home() {
             </header>
             <Section>
                 <SectionTitle title="Populares" />
-                    { rows.map((row, index) => {
-                        return (
-                            <div className="columns" key={index}>
-                                {cols.map(col => {
-                                    if (books.length > 0) {
+                    {(() => {
+                        if (isLoading) return (
+                            <>
+                                <div className="card-columns">
+                                    {cols.map(col => {
                                         return (
-                                            <Card key={books[col+(row*ratio)]._id}
-                                                urlImage={books[col+(row*ratio)].capa}
-                                                titulo={books[col+(row*ratio)].titulo}
-                                                autor={books[col+(row*ratio)].autor}
-                                                preco={books[col+(row*ratio)].preco}
-                                                precoDesconto={
-                                                    calcDiscount(books[col+(row*ratio)].desconto, 
-                                                    books[col+(row*ratio)].preco)
-                                                }
-                                            />
+                                            <CardPlaceholder key={col} />
                                         )
-                                    }
+                                    })}
+                                </div>
+                            </>
+                        );
+                        else return (
+                            <>
+                                {rows.map((row, index) => {
+                                    return (
+                                        <div className="card-columns" key={index}>
+                                            {cols.map(col => {
+                                                if (books.length > 0) {
+                                                    return (
+                                                        <Card key={books[col + (row * ratio)]._id}
+                                                            urlImage={books[col + (row * ratio)].capa}
+                                                            titulo={books[col + (row * ratio)].titulo}
+                                                            autor={books[col + (row * ratio)].autor}
+                                                            preco={books[col + (row * ratio)].preco}
+                                                            precoDesconto={
+                                                                calcDiscount(books[col + (row * ratio)].desconto,
+                                                                    books[col + (row * ratio)].preco)
+                                                            }
+                                                        />
+                                                    )
+                                                }
+                                            })}
+                                        </div>
+                                    )
                                 })}
-                            </div>
-                        )
-                    }) }
+                            </>
+                        );
+                    })()}
             </Section>
             <Footer />
         </>
