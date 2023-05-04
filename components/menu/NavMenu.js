@@ -24,11 +24,13 @@ function NavMenu() {
                                 Home
                             </a>
                         </div>
+                        {/*
                         <div className="navbar-item">
                             <a href="acervo" className="button is-info is-outlined">
                                 Acervo
                             </a>
                         </div>
+                        */}
                         <div className="navbar-item">
                             <a href="/" className="button is-primary is-outlined">
                                 Sair
