@@ -29,6 +29,15 @@ function Login() {
                                 <div className="level-item mt-7 is-mobile">
                                     <SingIn />
                                 </div>
+                                <hr />
+                                <div>
+                                    <div className="level level-item is-marginless">
+                                        <strong><p className="has-text-white">Este é um projeto demonstrativo.</p></strong>
+                                    </div>
+                                    <div className="level level-item is-marginless">
+                                        <a href="https://conatto-portfolio.vercel.app" className="has-text-success"><strong>Saiba Mais.</strong></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
