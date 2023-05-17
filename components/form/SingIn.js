@@ -1,10 +1,10 @@
 import EmailField from "./EmailField";
 import PasswordField from "./PasswordField";
 
-function SingIn({ emailValue , passwordValue }) {
+function SingIn({ emailValue , passwordValue, handleHref }) {
     return (
         <>
-            <form id="login" onSubmit>
+            <form id="login">
                 <div id="mensagem"></div>
                 <EmailField email={emailValue} />
 
@@ -12,7 +12,7 @@ function SingIn({ emailValue , passwordValue }) {
                 <div className="mt-6 ml-3 mr-3">
                     <div className="block level is-mobile">
                         <button className="level-item button is-link is-outlined"
-                            id="btLogar" type="submit" >Login
+                            id="btLogar" type="button" onClick={handleHref} >Login
                         </button>
                     </div>
                     <div className="block level is-mobile">

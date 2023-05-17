@@ -1,11 +1,19 @@
 import { React } from "react";
+import { useRouter } from "next/router";
 import { SingIn } from "../components";
 
+
 function Login() {
+    const router = useRouter();
+    
+    const handleClick = () => {
+        router.push("/home");
+    }
+
     return (
         <>
             <div>
-                <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+                <meta httpEquiv="content-type" content="text/html; charset=UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta name="content-language" content="pt-br" />
                 <meta name="author" content="Conatto" />
@@ -27,7 +35,7 @@ function Login() {
                                     </figure>
                                 </div>
                                 <div className="level-item mt-7 is-mobile">
-                                    <SingIn />
+                                    <SingIn handleHref={handleClick} />
                                 </div>
                                 <hr />
                                 <div>
