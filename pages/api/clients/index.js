@@ -9,7 +9,7 @@ export default async function Handler(req, res) {
     switch(method) {
         case 'GET':
             try {
-                const { db } = await connectionDB();
+                const db = await connectionDB();
                 const cursor = await db.collection('livros').find({}).toArray();
                 //client.close();
                 res.status(200).json({ method: "get", success: true, content: cursor });
@@ -45,7 +45,7 @@ export default async function Handler(req, res) {
                     const renameNewFile = await FileStorage(files.fileImage, uploadFolder);
                     if (renameNewFile.success) formData.capa = renameNewFile.content;
 
-                    const { db, client } = await connectionDB();
+                    const db = await connectionDB();
                     const queryResult = await db.collection("livros").insertOne(formData);
                     finalResult.push(formData, queryResult);
                     res.status(201).json({ method: "post", success: true, content: finalResult });

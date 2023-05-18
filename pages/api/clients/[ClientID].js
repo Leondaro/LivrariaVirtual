@@ -25,7 +25,7 @@ export default async function Handler(req, res) {
                         console.log(err);
                     }
                     
-                    const { db, client } = await connectionDB();
+                    const db = await connectionDB();
                     let formData = JSON.parse(fields.inputFields);
                     
 
@@ -60,7 +60,7 @@ export default async function Handler(req, res) {
                 const uploadFolder = path.join(__dirname, "../../../../../public/upload/products/");
                 let finalResult = [];
 
-                const { db, client } = await connectionDB();
+                const db = await connectionDB();
                 const doc = await db.collection('livros').findOne(
                     { _id: objId },
                     { capa: 1 }

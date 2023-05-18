@@ -1,21 +1,24 @@
 import { Db, MongoClient } from "mongodb";
-import url from "url";
 
-const uri = process.env.DATABASE_URL;
-const dbName = url.parse(uri).pathname.substring(1);
-let db: Db = null;
+if (!process.env.MONGODB_URI) {
+    throw new Error('Environment variable "MONGODB_URI" is invalid or missing');
+}
+const uri = process.env.MONGODB_URI;
+const options = {}
+let cachedDB : Db | null;
 
 export default async () => {
-    if (db) return { db } ;
+    if (cachedDB) return cachedDB;
 
-    const client = new MongoClient(uri);
+    const mongoClient = new MongoClient(uri, options);
+    let client;
     try {
-       await client.connect();     
+       client = await mongoClient.connect();
     } catch (error) {
         console.log("Connection error: "+error);
     }
 
-    db = client.db(dbName);
-    //cachedDB = db;
-    return { db, client };
+    let db: Db = client.db(process.env.DATABASE_NAME);
+    cachedDB = db;
+    return db;
 }
