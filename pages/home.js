@@ -14,15 +14,10 @@ function Home() {
     const HandlerGetBooks = async () => {
         try {
             setIsLoading(true);
-<<<<<<< HEAD
-            const data = await api.get('/clients');
-            setBooks(data);
-=======
             await api.get('/clients')
             .then(response => {
                 setBooks(response.data);
             });
->>>>>>> 912925d (reviewing data delivery response)
             setIsLoading(false);
         } catch (error) {
             console.log(error);

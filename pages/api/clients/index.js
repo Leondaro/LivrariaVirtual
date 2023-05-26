@@ -11,7 +11,6 @@ export default async function Handler(req, res) {
             try {
                 const db = await connectionDB();
                 const cursor = await db.collection('livros').find({}).toArray();
-                //client.close();
                 res.send(cursor);
             } catch (error) {
                 console.log(error);
@@ -19,17 +18,13 @@ export default async function Handler(req, res) {
             }
         break;
         case 'POST':
-            try {
-                //const { img } = req.body;
-                //if (!item) throw res.status(400).json({ method: "post", success: false, data: error });
-                //const objId = new ObjectId();
-               
+            try {               
                 const form = new Formidable.IncomingForm();
                 const uploadFolder = path.join(__dirname, "../../../../public/upload/products");
                 form.maxFileSize = 50 * 1024 * 1024;
                 form.uploadDir = uploadFolder;
                 let finalResult = [];
-                /**/
+
                 form.parse(req, async (err, fields, files) => {
                     if (err) {
                         console.log("error parsing files");
@@ -58,7 +53,6 @@ export default async function Handler(req, res) {
     }
 }
 
-/**/
 export const config = {
   api: {
     bodyParser: false,
