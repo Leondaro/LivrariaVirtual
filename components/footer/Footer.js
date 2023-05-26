@@ -7,7 +7,7 @@ function Footer() {
                 </div>
                 <div className="columns level-item is-mobile">
                     <div className="column is-narrow">
-                    <p className="level-item"><strong className="has-text-success"><a className="has-text-success" href="https://conatto-portfolio.vercel.app/">Saiba Mais.</a></strong></p>
+                    <p className="level-item"><strong className="has-text-success"><a className="has-text-success" href="https://conatto.github.io">Saiba Mais</a></strong></p>
                     </div>
                 </div>
             </div>

@@ -43,7 +43,7 @@ function Login() {
                                         <strong><p className="has-text-white">Este é um projeto demonstrativo.</p></strong>
                                     </div>
                                     <div className="level level-item is-marginless">
-                                        <a href="https://conatto-portfolio.vercel.app" className="has-text-success"><strong>Saiba Mais.</strong></a>
+                                        <a href="https://conatto.github.io" className="has-text-success"><strong>Saiba Mais</strong></a>
                                     </div>
                                 </div>
                             </div>
