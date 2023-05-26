@@ -12,10 +12,10 @@ export default async function Handler(req, res) {
                 const db = await connectionDB();
                 const cursor = await db.collection('livros').find({}).toArray();
                 //client.close();
-                res.status(200).json({ method: "get", success: true, content: cursor });
+                res.send(cursor);
             } catch (error) {
                 console.log(error);
-                res.status(500).json({ method: "get", success: false, content: error });
+                res.send(error);
             }
         break;
         case 'POST':
