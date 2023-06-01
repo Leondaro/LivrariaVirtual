@@ -1,4 +1,4 @@
-import { NavMenu, Footer, Section, SectionTitle, CardPlaceholder, Pagination } from "../components";
+import { NavMenu, Footer, Section, SectionTitle, CardPlaceholder, Pagination, AsideMenu } from "../components";
 
 function Acervo() {
     const cols = [0, 1, 2, 3]
@@ -12,19 +12,26 @@ function Acervo() {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
                 <title>Livraria Virtual - Acervo</title>
             </div>
-            <header>
-                <NavMenu />
-            </header>
-            <Section aside="true">
-                <SectionTitle title="Acervo" />
-                <div className="card-columns">
-                    {cols.map(col => {
-                        return (
-                            <CardPlaceholder key={col} />
-                        )
-                    })}
+            <NavMenu />
+            <Section>
+                <div className="breakpoint-wrapper">
+                    <AsideMenu />
+                    <div className="home-columns">
+                        <div className="column is-narrow pt-0">
+                            <div className="box">
+                                <SectionTitle>Acervo</SectionTitle>
+                                <div className="card-columns">
+                                    {cols.map(col => {
+                                        return (
+                                            <CardPlaceholder key={col} />
+                                        )
+                                    })}
+                                </div>
+                                <Pagination />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <Pagination />
             </Section>
             <Footer />
         </>

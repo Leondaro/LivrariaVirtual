@@ -1,8 +1,8 @@
-const SectionTitle = ({ title }) => {
+const SectionTitle = ({ children }) => {
     return (
         <>
             <div className="box is-shadowless is-radiusless is-marginless">
-                <h2 className="title is-3 has-text-info">{title}</h2>
+                <h2 className="title is-3 has-text-info">{children}</h2>
             </div>
         </>
     );

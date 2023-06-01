@@ -1,6 +1,7 @@
 import { React } from "react";
 import { useRouter } from "next/router";
-import { SingIn } from "../components";
+import { Form, InputField, EmailIcon, KeyIcon, Button, Text } from "../components";
+import Link from "next/link";
 
 
 function Login() {
@@ -35,15 +36,34 @@ function Login() {
                                     </figure>
                                 </div>
                                 <div className="level-item mt-7 is-mobile">
-                                    <SingIn handleHref={handleClick} />
+                                    <Form id={"login"}>
+                                        <div id="mensagem"></div>
+                                        <InputField inputType={"text"} inputName={"usuario"}>
+                                            <EmailIcon />
+                                        </InputField>
+
+                                        <InputField inputType={"password"} inputName={"senha"}>
+                                            <KeyIcon />
+                                        </InputField>
+                                        <div className="mt-6 ml-3 mr-3">
+                                            <div className="block level is-mobile">
+                                                <Button id={"btLogar"} css={"level-item button is-outlined is-link"} handler={handleClick}>Login</Button>
+                                            </div>
+                                            <div className="block level is-mobile">
+                                                <Button id={"btCadastrar"} css={"level-item button is-outlined is-success"}>Cadastro</Button>
+                                            </div>
+                                        </div>
+                                    </Form>
                                 </div>
                                 <hr />
                                 <div>
                                     <div className="level level-item is-marginless">
-                                        <strong><p className="has-text-white">Este é um projeto demonstrativo.</p></strong>
+                                        <strong><Text css={"has-text-white"}>Este é um projeto demosntrativo.</Text></strong>
                                     </div>
                                     <div className="level level-item is-marginless">
-                                        <a href="https://conatto.github.io" className="has-text-success"><strong>Saiba Mais</strong></a>
+                                        <Link href={"https://conatto.github.io"}>
+                                            <strong className="has-text-success">Saiba Mais</strong>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
