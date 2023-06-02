@@ -1,7 +1,7 @@
 const Section = ({ children }) => {
     return (
-            <section className="section mt-7 mb-7 is-translucid-grey is-framed-top-burgundy is-framed-bottom-burgundy">
-                <div className="level is-flex is-justify-content-center">
+            <section className="section mt-7 mb-7 translucid-grey border-top-burgundy border-bottom-burgundy">
+                <div className="level justify-content">
                     {children}
                 </div>
             </section >

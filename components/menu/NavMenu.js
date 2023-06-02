@@ -5,10 +5,10 @@ import NavLink from "./NavLink";
 function NavMenu() {
     return (
         <header>
-            <nav className="navbar is-framed-bottom-burgundy">
+            <nav className="navbar border-bottom-burgundy">
                 <div className="container">
                     <div className="level-item">
-                        <figure className="image is-menu-logo ml-4 mb-2">
+                        <figure className="image menu-logo ml-4 mb-2">
                             <a href="home"><img src="_img/LivrariaLogo.png" /></a>
                         </figure>
                     </div>

@@ -11,7 +11,7 @@ function MenuBurger({ targetEl }) {
     return (
         <>
             <div>
-                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target={targetEl} onClick={handleClick} >
+                <a role="button" className="navbar-burger has-text-warning" aria-label="menu" aria-expanded="false" data-target={targetEl} onClick={handleClick} >
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../services/api";
 import calcDiscount from "../helpers/CalcDiscount"
 import { NavMenu, Footer, Section, SectionTitle, Card, CardHeader, CardContent, CardImage, Text, CardPlaceholder, Button, CartIcon } from "../components";
+import Link from "next/link";
 
 function Home() {
     const [books, setBooks] = useState([]);
@@ -51,7 +52,7 @@ function Home() {
                 <div className="home-columns">
                     <div className="column is-narrow pt-0">
                         <div className="box">
-                            <SectionTitle>Populares</SectionTitle>
+                            <SectionTitle><span className="padding-title">Populares</span></SectionTitle>
                             {(() => {
                                 if (isLoading) return (
                                     <>
@@ -83,15 +84,19 @@ function Home() {
                                                                         <Text css={"title is-4 has-text-white"}>{"R$ " + calcDiscount(books[col + (row * ratio)].desconto, books[col + (row * ratio)].preco)}</Text>
                                                                         <div className="level is-mobile">
                                                                             <div className="level-left">
-                                                                                <Button css={"button is-warning"}>
-                                                                                    Detalhes
-                                                                                </Button>
+                                                                                <Link href={"ProdutoID"}>
+                                                                                    <Button css={"button is-warning"}>
+                                                                                        Detalhes
+                                                                                    </Button>
+                                                                                </Link>
                                                                             </div>
                                                                             <div className="level-right ml-4">
-                                                                                <Button css={"button is-success"}>
-                                                                                    <CartIcon />
-                                                                                    <span>Carrinho</span>
-                                                                                </Button>
+                                                                                <Link href={"carrinho"}>
+                                                                                    <Button css={"button is-success"}>
+                                                                                        <CartIcon />
+                                                                                        <span>Carrinho</span>
+                                                                                    </Button>
+                                                                                </Link>
                                                                             </div>
                                                                         </div>
                                                                     </CardContent>

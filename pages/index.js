@@ -27,15 +27,15 @@ function Login() {
             </div>
             <section className="section level">
                 <div className="level-item">
-                    <div className="mt-8 column is-4">
-                        <div className="box is-framed-burgundy">
+                    <div className="column is-4">
+                        <div className="box border-burgundy">
                             <div className="column level">
                                 <div className="level level-item">
-                                    <figure className="image is-index-logo mb-6">
+                                    <figure className="image index-logo">
                                         <a href="/"><img id="logo" src="_img\LivrariaLogo.png" /></a>
                                     </figure>
                                 </div>
-                                <div className="level-item mt-7 is-mobile">
+                                <div className="level-item is-mobile">
                                     <Form id={"login"}>
                                         <div id="mensagem"></div>
                                         <InputField inputType={"text"} inputName={"usuario"}>
@@ -58,7 +58,7 @@ function Login() {
                                 <hr />
                                 <div>
                                     <div className="level level-item is-marginless">
-                                        <strong><Text css={"has-text-white"}>Este é um projeto demosntrativo.</Text></strong>
+                                        <strong><Text css={"has-text-white has-text-centered"}>Este é um projeto demosntrativo.</Text></strong>
                                     </div>
                                     <div className="level level-item is-marginless">
                                         <Link href={"https://conatto.github.io"}>

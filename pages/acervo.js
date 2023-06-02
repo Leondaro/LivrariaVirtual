@@ -19,7 +19,7 @@ function Acervo() {
                     <div className="home-columns">
                         <div className="column is-narrow pt-0">
                             <div className="box">
-                                <SectionTitle>Acervo</SectionTitle>
+                                <SectionTitle><span className="padding-title">Acervo</span></SectionTitle>
                                 <div className="card-columns">
                                     {cols.map(col => {
                                         return (

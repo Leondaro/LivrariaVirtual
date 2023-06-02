@@ -13,7 +13,7 @@ function Pagination() {
     return (
         <div className="level">
               <div className="level-item">
-                <nav className="pagination is-centered" role="navigation" aria-label="pagination">
+                <nav className="pagination" role="navigation" aria-label="pagination">
                     {currentPage > 1 ? <PrevPageButton /> : null}
                   <ul className="pagination-list">
                     <li><a className="pagination-link is-current" aria-label="Page 01" aria-current="page">

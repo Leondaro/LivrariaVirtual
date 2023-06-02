@@ -132,10 +132,10 @@ function Estoque() {
             <NavMenu />
             <Section>
                 <div className="is-block">
-                    <div className="is-flex is-justify-content-center">
+                    <div className="justify-content">
                         <div className="home-columns">
                             <div className="box half-width">
-                                <SectionTitle>Novo Livro</SectionTitle>
+                                <SectionTitle><span className="padding-title">Novo Livro</span></SectionTitle>
                                 <div className="level-item">
                                     <div className="column is-10">
                                         <form id="cadBook" onSubmit={idItem === null ? HandlerInsertBook : HandlerUpdateBook} encType="multipart/form-data" method="post">
@@ -164,27 +164,27 @@ function Estoque() {
                                             <InputErrorMsg errorMsg="Digite uma categoria válida." />
 
                                             <FieldForm label="Ano" inputType="text" inputName="ano"
-                                                placeholder="O ano de lançamento do livro" value={inputs.ano} maxLenght="4" icon="calendar-alt"
+                                                placeholder="O ano de lançamento do livro" value={inputs.ano} maxLenght="4" icon="calendar"
                                                 handleChange={handleChange} />
                                             <InputErrorMsg errorMsg="Digite um ano válido." />
 
                                             <FieldForm label="Preço" inputType="text" inputName="preco"
-                                                placeholder="O preço do livro" value={inputs.preco} maxLenght="5" icon="dolar-sign"
+                                                placeholder="O preço do livro" value={inputs.preco} maxLenght="5" icon="usd"
                                                 handleChange={handleChange} />
                                             <InputErrorMsg errorMsg="Digite um preço válido." />
 
                                             <FieldForm label="Desconto" inputType="text" inputName="desconto"
                                                 placeholder="O desconto do livro, se houver (%)" value={inputs.desconto} maxLenght="3"
-                                                icon="percent-sign" handleChange={handleChange} />
+                                                icon="percent" handleChange={handleChange} />
                                             <InputErrorMsg errorMsg="Digite um valor válido." />
 
                                             <TextFieldForm label="Descrição" inputName="descricao" placeholder="Uma breve descrição sobre o livro"
                                                 value={inputs.descricao} handleChange={handleChange} />
                                             <InputErrorMsg errorMsg="Escreva um texto válido." />
 
-                                            <div className="level-item">
+                                            <div className="level-item" style={{justifyContent: 'space-around'}}>
                                                 <button className="button is-warning" type="button" onClick={HandlerDeleteBook} > DELETAR ! </button>
-                                                <button className="button is-warning m-line" type="button" onClick={handleCleanForm} > CANCELAR ! </button>
+                                                <button className="button is-warning" type="button" onClick={handleCleanForm} > CANCELAR ! </button>
                                                 <button className="button is-warning" type="submit" > MANDAR ME! </button>
                                             </div>
                                         </form>
@@ -194,11 +194,11 @@ function Estoque() {
                         </div>
                     </div>
 
-                    <div className="level is-flex is-justify-content-center">
+                    <div className="level justify-content">
                         <div className="home-columns">
                             <div className="column">
                                 <div className="box">
-                                    <SectionTitle>Estoque</SectionTitle>
+                                    <SectionTitle><span className="padding-title">Estoque</span></SectionTitle>
                                     <div className="level-item">
                                         <div className="table-container">
                                             <table onLoad={HandlerFindBooks} className="table is-hoverable has-background-grey-lighter">
