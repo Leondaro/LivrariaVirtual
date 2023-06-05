@@ -1,19 +1,14 @@
 import { React } from "react";
-import { useRouter } from "next/router";
-import { Form, InputField, EmailIcon, KeyIcon, Button, Text } from "../components";
+import { Form, InputField, EmailIcon, KeyIcon, Button, Text, Figure } from "../components";
+import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 
 
 function Login() {
-    const router = useRouter();
-    
-    const handleClick = () => {
-        router.push("/home");
-    }
-
     return (
         <>
-            <div>
+            <Head>
                 <meta httpEquiv="content-type" content="text/html; charset=UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta name="content-language" content="pt-br" />
@@ -24,16 +19,18 @@ function Login() {
 
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
                 <title>Bem-Vindo! - Livraria Virtual</title>
-            </div>
-            <section className="section level">
+            </Head>
+            <section className="section level is-marginless">
                 <div className="level-item">
                     <div className="column is-4">
                         <div className="box border-burgundy">
                             <div className="column level">
                                 <div className="level level-item">
-                                    <figure className="image index-logo">
-                                        <a href="/"><img id="logo" src="_img\LivrariaLogo.png" /></a>
-                                    </figure>
+                                    <Figure className="image">
+                                        <Link href={"/"}>
+                                            <Image id="logo" src={"/_img/LivrariaLogo.png"} width={256} height={127} alt="Logotipo do site" /> 
+                                        </Link>
+                                    </Figure>
                                 </div>
                                 <div className="level-item is-mobile">
                                     <Form id={"login"}>
@@ -47,7 +44,9 @@ function Login() {
                                         </InputField>
                                         <div className="mt-6 ml-3 mr-3">
                                             <div className="block level is-mobile">
-                                                <Button id={"btLogar"} css={"level-item button is-outlined is-link"} handler={handleClick}>Login</Button>
+                                                <Link className="level-item" href={"/livraria/home"}>
+                                                    <Button id={"btLogar"} css={"level-item button is-outlined is-link"}>Login</Button>
+                                                </Link>
                                             </div>
                                             <div className="block level is-mobile">
                                                 <Button id={"btCadastrar"} css={"level-item button is-outlined is-success"}>Cadastro</Button>

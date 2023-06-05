@@ -1,7 +1,7 @@
-function Figure({ css, srcImage }) {
+function Figure({ css, children }) {
     return (
         <figure className={css}>
-            <img src={srcImage} />
+            {children}
         </figure>
     )
 }

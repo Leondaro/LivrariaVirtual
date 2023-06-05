@@ -1,6 +1,10 @@
 import MenuBurger from "./MenuBurger";
 import NavTag from "./NavTag";
 import NavLink from "./NavLink";
+import Figure from "../utilities/Figure";
+import Image from "next/image";
+import Link from "next/link";
+
 
 function NavMenu() {
     return (
@@ -8,9 +12,11 @@ function NavMenu() {
             <nav className="navbar border-bottom-burgundy">
                 <div className="container">
                     <div className="level-item">
-                        <figure className="image menu-logo ml-4 mb-2">
-                            <a href="home"><img src="_img/LivrariaLogo.png" /></a>
-                        </figure>
+                        <Link href={"home"}>
+                            <Figure css={"image menu-logo"} >
+                                <Image src={"/_img/LivrariaLogo.png"} width={128} height={64} alt="Logotipo" />
+                            </Figure>
+                        </Link>
                     </div>
                 </div>
 

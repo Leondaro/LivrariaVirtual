@@ -1,9 +1,12 @@
-const CardImage = ({urlImage}) => {
+import Image from "next/image";
+import Figure from "../utilities/Figure";
+
+const CardImage = ({ urlImage }) => {
     return (
         <div className="card-image pt-3">
-            <figure className="level-item">
-                <img className="showcase-image" src={"/upload/products/"+urlImage} alt="Placeholder image" />
-            </figure>
+            <Figure css={"level-item"} >
+                <Image src={"/upload/products/"+urlImage} width={171} height={240} alt="Foto da capa do livro" />
+            </Figure>
         </div>
     )
 }
