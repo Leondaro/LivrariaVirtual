@@ -60,6 +60,13 @@ a:hover {
         color: #fff;
     }
 }
+.file-label {
+    width: 100%;
+}
+span.file-name {
+    width: inherit;
+    max-width: 100%;
+}
 
 #login {
     margin-top: 4.5rem;
@@ -107,7 +114,7 @@ a:hover {
 .navbar-burger > span { 
     pointer-events: none;
 }
-.home-columns {
+.home {
     display: inline-flex;
     max-width: 100vw;
 }
@@ -157,6 +164,11 @@ a:hover {
     align-items: center;
     justify-content: space-between; 
 }
+.space-around { 
+    display: flex;
+    align-items: center;
+    justify-content: space-around; 
+}
 .flex-column {
     display: flex;
     flex-direction: column;
@@ -164,6 +176,10 @@ a:hover {
 .align-top {
     display: flex;
     align-items: flex-start;
+}
+.align-right {
+    display: flex;
+    align-items: flex-end;
 }
 .scratched {
     text-decoration: line-through;
@@ -193,12 +209,16 @@ a:hover {
     margin: auto;
 }
 
-.card {  
+.card-size {  
     width: 18rem; 
     height: 32rem;
     border-radius: .25rem;
 }
-.card-title { min-height: 7rem; }
+.card-imagem-size {
+    width: 11rem;
+    height: 15rem;
+}
+.card-title-size { min-height: 4.5rem; }
 
 .placeholder-image {
     width: 11rem;
@@ -285,7 +305,7 @@ thead, tfoot {
 }
 
 @media screen and (max-width: 1464px) {
-    .home-columns {
+    .home {
         display: block;
     }
     .breakpoint-wrapper {

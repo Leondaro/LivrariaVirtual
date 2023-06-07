@@ -1,5 +1,6 @@
 import { React } from "react";
-import { Form, InputField, EmailIcon, KeyIcon, Button, Text, Figure } from "../components";
+import { Form, Text, Figure } from "../components";
+import { Box, Column, Control, Level, Field, Help, Icon, Input, Block, Button, Section } from "rbx";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,56 +21,82 @@ function Login() {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
                 <title>Bem-Vindo! - Livraria Virtual</title>
             </Head>
-            <section className="section level is-marginless">
-                <div className="level-item">
-                    <div className="column is-4">
-                        <div className="box border-burgundy">
-                            <div className="column level">
-                                <div className="level level-item">
-                                    <Figure className="image">
-                                        <Link href={"/"}>
-                                            <Image id="logo" src={"/_img/LivrariaLogo.png"} width={256} height={127} alt="Logotipo do site" /> 
-                                        </Link>
-                                    </Figure>
-                                </div>
-                                <div className="level-item is-mobile">
-                                    <Form id={"login"}>
-                                        <div id="mensagem"></div>
-                                        <InputField inputType={"text"} inputName={"usuario"}>
-                                            <EmailIcon />
-                                        </InputField>
-
-                                        <InputField inputType={"password"} inputName={"senha"}>
-                                            <KeyIcon />
-                                        </InputField>
-                                        <div className="mt-6 ml-3 mr-3">
-                                            <div className="block level is-mobile">
-                                                <Link className="level-item" href={"/livraria/home"}>
-                                                    <Button id={"btLogar"} css={"level-item button is-outlined is-link"}>Login</Button>
+            <Section marginless={true}>
+                <Level marginless={true}>
+                    <Level.Item>
+                        <Column.Group>
+                            <Column>
+                                <Box className="border-burgundy">
+                                    <Column>
+                                        <Level>
+                                            <Figure className={"image"}>
+                                                <Link href={"/"}>
+                                                    <Image id="logo" src={"/_img/LivrariaLogo.png"} width={256} height={127} alt="Logotipo do site" />
                                                 </Link>
-                                            </div>
-                                            <div className="block level is-mobile">
-                                                <Button id={"btCadastrar"} css={"level-item button is-outlined is-success"}>Cadastro</Button>
-                                            </div>
-                                        </div>
-                                    </Form>
-                                </div>
-                                <hr />
-                                <div>
-                                    <div className="level level-item is-marginless">
-                                        <strong><Text css={"has-text-white has-text-centered"}>Este é um projeto demosntrativo.</Text></strong>
-                                    </div>
-                                    <div className="level level-item is-marginless">
-                                        <Link href={"https://conatto.github.io"}>
-                                            <strong className="has-text-success">Saiba Mais</strong>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div >
-            </section >
+                                            </Figure>
+                                        </Level>
+                                        <Level.Item>
+                                            <form id={"login"}>
+                                                <Block>
+                                                    <Field>
+                                                        <Help id={"mensagem"}></Help>
+                                                        <Control iconLeft={true} >
+                                                            <Icon align="left"><i className="fa fa-envelope"></i></Icon>
+                                                            <Input type={"text"} name={"usuario"} readOnly={true} defaultValue={"Visitante"}></Input>
+                                                        </Control>
+                                                    </Field>
+                                                </Block>
+
+                                                <Block>
+                                                    <Field>
+                                                        <Help id={"mensagem"}></Help>
+                                                        <Control iconLeft={true} >
+                                                            <Icon align="left"><i className="fa fa-envelope"></i></Icon>
+                                                            <Input type={"password"} name={"senha"} readOnly={true} defaultValue={"Visitante"}></Input>
+                                                        </Control>
+                                                    </Field>
+                                                </Block>
+
+                                                <Block>
+                                                    <Level.Item>
+                                                        <Column.Group>
+                                                            <Column>
+                                                                <Link href={"livraria/home"}>
+                                                                    <Button color={"link"} outlined={true}>Login</Button>
+                                                                </Link>
+                                                            </Column>
+                                                            <Column>
+                                                                <Link href={"/"}>
+                                                                    <Button color={"success"} outlined={true}>Cadastro</Button>
+                                                                </Link>
+                                                            </Column>
+                                                        </Column.Group>
+                                                    </Level.Item>
+                                                </Block>
+                                            </form>
+                                        </Level.Item>
+                                        <hr />
+                                        <Block>
+                                            <Level marginless={true}>
+                                                <Level.Item>
+                                                    <strong><Text css={"has-text-white has-text-centered"}>Este é um projeto demosntrativo.</Text></strong>
+                                                </Level.Item>
+                                            </Level>
+                                            <Level marginless={true}>
+                                                <Level.Item>
+                                                    <Link href={"https://conatto.github.io"}>
+                                                        <strong className="has-text-success">Saiba Mais</strong>
+                                                    </Link>
+                                                </Level.Item>
+                                            </Level>
+                                        </Block>
+                                    </Column>
+                                </Box>
+                            </Column>
+                        </Column.Group>
+                    </Level.Item>
+                </Level>
+            </Section>
         </>
     );
 }

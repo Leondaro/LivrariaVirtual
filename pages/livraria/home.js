@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import api from "../../services/api";
 import calcDiscount from "../../helpers/CalcDiscount";
-import { SectionTitle, Card, CardHeader, CardContent, CardImage, Text, CardPlaceholder, Button, CartIcon } from "../../components";
+import { SectionTitle, CardHeader, CardContent, CardImage, Text, CardPlaceholder, CartIcon, Figure } from "../../components";
 import Layout from "./layout";
 import Link from "next/link";
+import { Generic, Media, Box, Column, Level, Card, Block, Icon, Image, Button } from "rbx";
 
 
 function Home() {
@@ -42,70 +43,86 @@ function Home() {
 
     return (
         <Layout name={"Home"}>
-            <div className="home-columns">
-                <div className="column is-narrow pt-0">
-                    <div className="box">
+            <Generic className="home">
+                <Column narrow={true}>
+                    <Box>
                         <SectionTitle><span className="padding-title">Populares</span></SectionTitle>
                         {(() => {
                             if (isLoading) return (
-                                <>
-                                    <div className="card-columns">
-                                        {cols.map(col => {
-                                            return (
-                                                <CardPlaceholder key={col} />
-                                            )
-                                        })}
-                                    </div>
-                                </>
+                                <Generic className="card-columns">
+                                    {cols.map(col => {
+                                        return (
+                                            <CardPlaceholder key={col} />
+                                        )
+                                    })}
+                                </Generic>
                             );
                             else return (
                                 <>
                                     {rows.map((row, index) => {
                                         return (
-                                            <div className="card-columns" key={index}>
+                                            <Generic className="card-columns" key={index}>
                                                 {cols.map(col => {
                                                     if (books.length > 0) {
                                                         return (
-                                                            <Card key={books[col + (row * ratio)]._id} >
-                                                                <CardImage urlImage={books[col + (row * ratio)].capa} />
-                                                                <CardContent>
-                                                                    <CardHeader>
-                                                                        <Text css={"title is-5 has-text-white"} >{books[col + (row * ratio)].titulo}</Text>
-                                                                        <Text css={"subtitle is-6 has-text-white"} >{books[col + (row * ratio)].autor}</Text>
-                                                                    </CardHeader>
-                                                                    <Text css={"title is-6 is-marginless has-text-white scratched"}>{"R$ " + books[col + (row * ratio)].preco}</Text>
-                                                                    <Text css={"title is-4 has-text-white"}>{"R$ " + calcDiscount(books[col + (row * ratio)].desconto, books[col + (row * ratio)].preco)}</Text>
-                                                                    <div className="level is-mobile">
-                                                                        <div className="level-left">
-                                                                            <Link href={"livros/" + books[col + (row * ratio)]._id}>
-                                                                                <Button css={"button is-warning"}>
-                                                                                    Detalhes
-                                                                                </Button>
-                                                                            </Link>
-                                                                        </div>
-                                                                        <div className="level-right ml-4">
-                                                                            <Link href={"carrinho"}>
-                                                                                <Button css={"button is-success"}>
-                                                                                    <CartIcon />
-                                                                                    <span>Carrinho</span>
-                                                                                </Button>
-                                                                            </Link>
-                                                                        </div>
-                                                                    </div>
-                                                                </CardContent>
-                                                            </Card>
+                                                            <Column key={books[col + (row * ratio)]._id}>
+                                                                <Generic className="box-card">
+                                                                    <Card className={"card-size"}>
+                                                                        <Column>
+                                                                            <Level.Item>
+                                                                                <Card.Image className={"card-imagem-size"}>
+                                                                                    <Figure css={"Image"}>
+                                                                                        <Image src={"/upload/products/" + books[col + (row * ratio)].capa} width={171} height={240} alt="Foto da capa do livro" />
+                                                                                    </Figure>
+                                                                                </Card.Image>
+                                                                            </Level.Item>
+                                                                        </Column>
+                                                                        <Card.Content>
+                                                                            <Media.Item>
+                                                                                <Block className="card-title-size">
+                                                                                    <Text css={"title is-5 has-text-white"} >{books[col + (row * ratio)].titulo}</Text>
+                                                                                    <Text css={"subtitle is-6 has-text-white"} >{books[col + (row * ratio)].autor}</Text>
+                                                                                </Block>
+                                                                                <Block>
+                                                                                    <Text css={"title is-6 is-marginless has-text-white scratched"}>{"R$ " + books[col + (row * ratio)].preco}</Text>
+                                                                                    <Text css={"title is-4 has-text-white"}>{"R$ " + calcDiscount(books[col + (row * ratio)].desconto, books[col + (row * ratio)].preco)}</Text>
+                                                                                </Block>
+                                                                                <Level>
+                                                                                    <Level.Item align={"left"}>
+                                                                                        <Link href={"livros/" + books[col + (row * ratio)]._id}>
+                                                                                            <Button color={"warning"}>
+                                                                                                Detalhes
+                                                                                            </Button>
+                                                                                        </Link>
+                                                                                    </Level.Item>
+                                                                                    <Level.Item align={"right"}>
+                                                                                        <Link href={"carrinho"}>
+                                                                                            <Button color={"success"}>
+                                                                                                <Icon>
+                                                                                                    <i className="fa fa-cart-plus" aria-hidden="true"></i>
+                                                                                                </Icon>
+                                                                                                <span>Carrinho</span>
+                                                                                            </Button>
+                                                                                        </Link>
+                                                                                    </Level.Item>
+                                                                                </Level>
+                                                                            </Media.Item>
+                                                                        </Card.Content>
+                                                                    </Card>
+                                                                </Generic>
+                                                            </Column>
                                                         )
                                                     }
                                                 })}
-                                            </div>
+                                            </Generic>
                                         )
                                     })}
                                 </>
                             );
                         })()}
-                    </div>
-                </div>
-            </div>
+                    </Box>
+                </Column>
+            </Generic>
         </Layout>
     );
 }
