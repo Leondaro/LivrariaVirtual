@@ -1,3 +1,5 @@
+import { Navbar, Highlight } from "rbx";
+
 function MenuBurger({ targetEl }) {
     const handleClick = (e) => {
         const burgerBtn = e.target;
@@ -9,15 +11,11 @@ function MenuBurger({ targetEl }) {
     }
 
     return (
-        <>
-            <div>
-                <a role="button" className="navbar-burger has-text-warning" aria-label="menu" aria-expanded="false" data-target={targetEl} onClick={handleClick} >
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-        </>
+        <Navbar.Burger textColor="warning" aria-label="menu" aria-expanded="false" data-target={targetEl} onClick={handleClick}>
+            <Highlight as="span" aria-hidden="true"></Highlight>
+            <Highlight as="span" aria-hidden="true"></Highlight>
+            <Highlight as="span" aria-hidden="true"></Highlight>
+        </Navbar.Burger>
     );
 }
 

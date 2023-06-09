@@ -1,23 +1,28 @@
 import Link from "next/link";
-import Text from "../utilities/Text";
+import { Column, Content, Footer, Generic, Level } from "rbx";
 
-function Footer() {
+function FooterStruct() {
     return (
-        <footer className="footer border-top-burgundy">
-            <div className="content has-text-centered">
-                <div className="mb-3">
-                    <strong><Text css={"has-text-white has-text-centered"}>Este é um projeto demosntrativo.</Text></strong>
-                </div>
-                <div className="columns level-item is-mobile">
-                    <div className="column is-narrow">
+        <Footer className={"border-top-burgundy"}>
+            <Content textAlign={"center"}>
+                <Column>
+                    <Level.Item>
+                        <Generic as={"p"} textAlign={"center"} textColor={"white"} textWeight={"bold"}>
+                            Este é um projeto demosntrativo.
+                        </Generic>
+                    </Level.Item>
+                    
+                    <Level.Item>
                         <Link href={"https://conatto.github.io"}>
-                            <strong className="has-text-success">Saiba Mais</strong>
+                            <Generic as={"p"} textAlign={"center"} textColor={"success"} textWeight={"bold"}>
+                                Saiba Mais
+                            </Generic>
                         </Link>
-                    </div>
-                </div>
-            </div>
-        </footer>
+                    </Level.Item>
+                </Column>
+            </Content>
+        </Footer>
     );
 }
 
-export default Footer;
+export default FooterStruct;

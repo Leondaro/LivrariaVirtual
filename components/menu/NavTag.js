@@ -1,8 +1,10 @@
-function NavTag({ text }) {
+import { Tag, Highlight } from "rbx";
+
+function NavTag({ children }) {
     return (
-        <span className="tag is-rounded is-small">
-            <strong>{text}</strong>
-        </span>
+        <Tag size="small" rounded={true}>
+            <Highlight textWeight="bold">{children}</Highlight>
+        </Tag>
     )
 }
 

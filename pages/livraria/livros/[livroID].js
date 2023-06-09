@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { Figure, Board, Text, BoardSection, CartIcon, ArrowLeftIcon } from "../../../components";
+import { Board, BoardSection } from "../../../components";
+import { Generic, Box, Level, Column, Button, Title, Image, Icon } from "rbx";
 import Layout from "../layout";
 import Link from "next/link";
-import { Generic, Box, Level, Column, Button, Icon } from "rbx";
+import Img from "next/image";
 
 
 function Livros() {
@@ -17,26 +17,26 @@ function Livros() {
                                     <Icon>
                                         <i className="fa fa-arrow-left" aria-hidden="true"></i>
                                     </Icon>
-                                    <span>Voltar</span>
+                                    <Generic as="span">Voltar</Generic>
                                 </Button>
                             </Link>
                         </Level>
                         <Level>
                             <Column className="full-centered">
-                                <Figure css={"image is-128x128"}>
-                                    <Image src={"/_img/shelfbook.jpg"} width={256} height={640} alt="Foto do livro"></Image>
-                                </Figure>
+                                <Image.Container>
+                                    <Img src={"/_img/shelfbook.jpg"} width={256} height={640} alt="Foto do livro" />
+                                </Image.Container>
                             </Column>
                             <Column className="max-width full-centered">
                                 <Level>
                                     <Board>
                                         <BoardSection>
-                                            <Text css={"title is-5 has-text-white is-marginless"} >Titulo do Livro</Text>
-                                            <Text css={"subtitle is-6 has-text-white is-marginless"} >Autor do Livro</Text>
-                                            <Text css={"title is-4 has-text-white is-marginless"} >Preço</Text>
+                                            <Title size={5} textColor="white" marginless={true}>Titulo do Livro</Title>
+                                            <Title subtitle={true} size={6} textColor="white" marginless={true}>Autor do Livro</Title>
+                                            <Title size={4} textColor="white" marginless={true}>Preço</Title>
                                         </BoardSection>
                                         <BoardSection>
-                                            <Text css={"is-marginless has-text-white"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui metus, rutrum in elit ac, congue posuere sapien. Aliquam convallis massa felis, quis pharetra augue malesuada venenatis.</Text>
+                                            <Generic as="p" textColor="white" marginless={true}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui metus, rutrum in elit ac, congue posuere sapien. Aliquam convallis massa felis, quis pharetra augue malesuada venenatis.</Generic>
                                         </BoardSection>
                                         <BoardSection>
                                             <Column className="full-centered">
@@ -45,7 +45,9 @@ function Livros() {
                                                         <Icon>
                                                             <i className="fa fa-cart-plus"></i>
                                                         </Icon>
-                                                        <span>Adicionar ao Carrinho</span>
+                                                        <Generic as="span">
+                                                            Adicionar ao Carrinho
+                                                        </Generic>
                                                     </Button>
                                                 </Link>
                                             </Column>

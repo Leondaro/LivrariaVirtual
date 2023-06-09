@@ -1,5 +1,7 @@
+import { Generic } from "rbx";
+
 const Board = ({ children }) => {
-    return <div className="board">{children}</div>
+    return <Generic className="board">{children}</Generic>
 }
 
 export default Board;

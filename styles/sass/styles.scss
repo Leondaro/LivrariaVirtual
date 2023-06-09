@@ -14,7 +14,9 @@ $radius-largest: 20px;
 // Geral
 $box-background-color: $grey-deep;
 $footer-background-color: $grey-deep;
+$footer-padding: 1.5rem 1.5rem 2rem;
 $navbar-background-color: $grey-deep;
+$navbar-item-hover-background-color: $burgundy;
 $dropdown-item-hover-background-color: $burgundy;
 $menu-item-color: $white;
 $menu-item-hover-background-color: $burgundy;
@@ -87,7 +89,6 @@ span.file-name {
 .footer { 
     bottom: $zero;
     width: $webkit-fill;
-    padding: 3rem 1.5rem 1rem;
 }
 
 .title-footer {
@@ -114,15 +115,31 @@ span.file-name {
 .navbar-burger > span { 
     pointer-events: none;
 }
+.navbar-right {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 3rem;
+}
+.navbar-item, .navbar-link {
+    padding: 1.5rem 1rem;
+}
 .home {
     display: inline-flex;
     max-width: 100vw;
 }
-#asideMenu > .menu-list {
-    display: block;
+.aside-list {
+    display: flex;
+    flex-direction: column;
     user-select: none;
 }
-
+li.button {
+    background-color: transparent;
+    border: 0px;
+    justify-content: start;
+}
+    li.button:hover {
+        background-color: $burgundy;
+    }
 .default-width {
     width: 80vw;
 }
@@ -211,46 +228,31 @@ span.file-name {
 
 .card-size {  
     width: 18rem; 
-    height: 32rem;
+    height: 36rem;
     border-radius: .25rem;
 }
 .card-imagem-size {
     width: 11rem;
     height: 15rem;
 }
-.card-title-size { min-height: 4.5rem; }
+.card-header-size { 
+    min-height: 4.5rem; 
+}
+
 
 .placeholder-image {
-    width: 11rem;
-    height: 15rem;
+    width: 100%;
+    min-height: 18.5rem;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
 }
-.placeholder-title {
-    width: 13rem;
-    height: 1.4rem;
+.placeholder-item {
+    width: 100%;
+    min-height: 1.5rem;
+    margin: .5rem 0;
 }
-.placeholder-subtitle {
-    width: 10rem;
-    height: 1.2rem;
-}
-.placeholder-price {
-    width: 3.5rem;
-    height: 1.3rem;
-}
-.placeholder-discount {
-    width: 5rem;
-    height: 1.75rem;
-}
-.placeholder-button {
-    width: 6rem;
-    height: 2.2rem;
-    margin: 1rem 0;
-    border-radius: .25rem;
-}
-.placeholder-title, 
-.placeholder-subtitle, 
-.placeholder-price, 
-.placeholder-discount {
-    margin: .1rem 0 !important;
+.placeholder-header-size { 
+    min-height: 6rem; 
 }
 .placeholder-color {
     position: relative;
@@ -312,8 +314,8 @@ thead, tfoot {
         flex-direction: column;
         justify-content: center;
     }
-    #asideMenu > .menu-list {
-        display: flex;
+    .aside-list {
+        flex-direction: row;
         flex-wrap: wrap;
     }
 }
@@ -323,6 +325,14 @@ thead, tfoot {
         grid-template-columns: repeat(2, auto);
         gap: 1rem;
         justify-content: center;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .navbar-right {
+        justify-content: center;
+    }
+    .aside-list {
+        flex-direction: column;
     }
 }
 @media screen and (max-width: 756px) {

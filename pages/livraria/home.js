@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import api from "../../services/api";
 import calcDiscount from "../../helpers/CalcDiscount";
-import { SectionTitle, CardHeader, CardContent, CardImage, Text, CardPlaceholder, CartIcon, Figure } from "../../components";
+import { SectionTitle, CardPlaceholder } from "../../components";
+import { Generic, Media, Box, Column, Level, Card, Block, Icon, Image, Button, Title } from "rbx";
 import Layout from "./layout";
+import Img from "next/image";
 import Link from "next/link";
-import { Generic, Media, Box, Column, Level, Card, Block, Icon, Image, Button } from "rbx";
 
 
 function Home() {
@@ -46,13 +47,17 @@ function Home() {
             <Generic className="home">
                 <Column narrow={true}>
                     <Box>
-                        <SectionTitle><span className="padding-title">Populares</span></SectionTitle>
+                        <SectionTitle>Populares</SectionTitle>
                         {(() => {
                             if (isLoading) return (
                                 <Generic className="card-columns">
                                     {cols.map(col => {
                                         return (
-                                            <CardPlaceholder key={col} />
+                                            <Column key={col}>
+                                                <Generic className="box-card">
+                                                    <CardPlaceholder />
+                                                </Generic>
+                                            </Column>
                                         )
                                     })}
                                 </Generic>
@@ -70,25 +75,25 @@ function Home() {
                                                                     <Card className={"card-size"}>
                                                                         <Column>
                                                                             <Level.Item>
-                                                                                <Card.Image className={"card-imagem-size"}>
-                                                                                    <Figure css={"Image"}>
-                                                                                        <Image src={"/upload/products/" + books[col + (row * ratio)].capa} width={171} height={240} alt="Foto da capa do livro" />
-                                                                                    </Figure>
+                                                                                <Card.Image>
+                                                                                    <Image.Container>
+                                                                                        <Img src={"/upload/products/" + books[col + (row * ratio)].capa} width={200} height={300} alt="Foto da capa do livro" />
+                                                                                    </Image.Container>
                                                                                 </Card.Image>
                                                                             </Level.Item>
                                                                         </Column>
                                                                         <Card.Content>
                                                                             <Media.Item>
-                                                                                <Block className="card-title-size">
-                                                                                    <Text css={"title is-5 has-text-white"} >{books[col + (row * ratio)].titulo}</Text>
-                                                                                    <Text css={"subtitle is-6 has-text-white"} >{books[col + (row * ratio)].autor}</Text>
+                                                                                <Block className="card-header-size">
+                                                                                    <Title textColor="white" size={5}>{books[col + (row * ratio)].titulo}</Title>
+                                                                                    <Title subtitle={true} textColor="white" size={6}>{books[col + (row * ratio)].autor}</Title>
                                                                                 </Block>
                                                                                 <Block>
-                                                                                    <Text css={"title is-6 is-marginless has-text-white scratched"}>{"R$ " + books[col + (row * ratio)].preco}</Text>
-                                                                                    <Text css={"title is-4 has-text-white"}>{"R$ " + calcDiscount(books[col + (row * ratio)].desconto, books[col + (row * ratio)].preco)}</Text>
+                                                                                    <Title size={6} marginless={true} textColor="white" className="scratched" >{"R$ " + books[col + (row * ratio)].preco}</Title>
+                                                                                    <Title size={4} textColor="white">{"R$ " + calcDiscount(books[col + (row * ratio)].desconto, books[col + (row * ratio)].preco)}</Title>
                                                                                 </Block>
                                                                                 <Level>
-                                                                                    <Level.Item align={"left"}>
+                                                                                    <Level.Item align="left">
                                                                                         <Link href={"livros/" + books[col + (row * ratio)]._id}>
                                                                                             <Button color={"warning"}>
                                                                                                 Detalhes
@@ -101,7 +106,7 @@ function Home() {
                                                                                                 <Icon>
                                                                                                     <i className="fa fa-cart-plus" aria-hidden="true"></i>
                                                                                                 </Icon>
-                                                                                                <span>Carrinho</span>
+                                                                                                <Generic as="span">Carrinho</Generic>
                                                                                             </Button>
                                                                                         </Link>
                                                                                     </Level.Item>

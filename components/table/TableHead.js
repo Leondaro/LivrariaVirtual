@@ -1,14 +1,16 @@
+import { Table } from "rbx";
+
 function TableHead({columns}) {
     return (
-        <>
-            <thead className="has-background-burgundy">
-                <tr >
-                    {columns.map((column) => 
-                        <th key={column} >{column}</th>
-                    )}
-                </tr>
-            </thead>
-        </>
+        <Table.Head>
+            <Table.Row>
+                {columns.map((column) => 
+                    <Table.Cell textColor={"white"} textWeight={"bold"} key={column} >
+                        {column}
+                    </Table.Cell>
+                )}
+            </Table.Row>
+        </Table.Head>
     )
 }
 

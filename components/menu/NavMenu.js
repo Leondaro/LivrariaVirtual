@@ -1,48 +1,49 @@
 import MenuBurger from "./MenuBurger";
 import NavTag from "./NavTag";
-import NavLink from "./NavLink";
-import Figure from "../utilities/Figure";
-import Image from "next/image";
+import Img from "next/image";
 import Link from "next/link";
+import { Container, Highlight, Image, Level, Navbar } from "rbx";
 
 
 function NavMenu() {
     return (
-        <header>
-            <nav className="navbar border-bottom-burgundy">
-                <div className="container">
-                    <div className="level-item">
-                        <Link href={"home"}>
-                            <Figure css={"image menu-logo"} >
-                                <Image src={"/_img/LivrariaLogo.png"} width={128} height={64} alt="Logotipo" />
-                            </Figure>
-                        </Link>
-                    </div>
-                </div>
+        <Navbar className="border-bottom-burgundy">
+            <Container>
+                <Level.Item>
+                    <Link href={"home"}>
+                        <Image.Container className="menu-logo">
+                            <Img src={"/_img/LivrariaLogo.png"} width={128} height={64} alt="Logotipo" />
+                        </Image.Container>
+                    </Link>
+                </Level.Item>
+            </Container>
 
-                <MenuBurger targetEl={"mainMenu"} />
-                <div id="mainMenu" className="navbar-menu navbar-end level-item">
-                    <div className="is-flex">
-                        <div className="columns is-marginless">
-                            <div className="navbar-item">
-                                <NavTag text={"Bem-vindo, Visitante!"} />
-                            </div>
-                            <div className="navbar-item">
-                                <NavLink href={"home"} color={"is-info"}>Home</NavLink>
-                            </div>
-                            {/*
-                        <div className="navbar-item">
-                            <NavLink href={"acervo"} color={"is-info"}>Acervo</NavLink>
-                        </div>
-                        */}
-                            <div className="navbar-item">
-                                <NavLink href={"/"} color={"is-primary"}>Sair</NavLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </header>
+            <MenuBurger targetEl={"mainMenu"} />
+            <Navbar.Menu id="mainMenu">
+                <Navbar.Segment align="right">
+                    <Level marginless={true}>
+                        <Navbar.Item as="div">
+                            <NavTag>Bem-vindo, Visitante!</NavTag>
+                        </Navbar.Item>
+                        <Navbar.Item href={"/livraria/home"}>
+                            <Highlight textColor="white" textWeight="bold">
+                                Home
+                            </Highlight>
+                        </Navbar.Item>
+                        <Navbar.Item href={"/livraria/acervo/acervo"}>
+                            <Highlight textColor="white" textWeight="bold">
+                                Acervo
+                            </Highlight>
+                        </Navbar.Item>
+                        <Navbar.Item href={"/"}>
+                            <Highlight textColor="white" textWeight="bold">
+                                Sair
+                            </Highlight>
+                        </Navbar.Item>
+                    </Level>
+                </Navbar.Segment>
+            </Navbar.Menu>
+        </Navbar>
     );
 }
 

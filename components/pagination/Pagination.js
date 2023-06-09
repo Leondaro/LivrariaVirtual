@@ -1,36 +1,35 @@
-import PrevPageButton from "./PrevPageButton";
-import NextPageButton from "./NextPageButton";
+import { Level, Pagination } from "rbx";
+import PaginationStep from "./PaginationStep";
+import PaginationLink from "./PaginationLink";
 import Ellipsis from "./Ellipsis";
-import PrevPageLink from "./PrevPageLink";
-import CurrentPageLink from "./CurrentPageLink";
-import NextPageLink from "./NextPageLink";
-import LastPageLink from "./LastPageLink";
 
-function Pagination() {
+
+function PaginationStruct() {
+    const firstPage = 1;
+    const lastPage = 12;
     let currentPage = 1;
-    let totalPages = 12;
     
     return (
-        <div className="level">
-              <div className="level-item">
-                <nav className="pagination" role="navigation" aria-label="pagination">
-                    {currentPage > 1 ? <PrevPageButton /> : null}
-                  <ul className="pagination-list">
-                    <li><a className="pagination-link is-current" aria-label="Page 01" aria-current="page">
-                      <span><strong>1</strong></span>
-                    </a></li>
-                    {currentPage >= 4 ? <Ellipsis /> : null}                    
-                    {currentPage-1 > 1 ? <PrevPageLink currentPage={currentPage}/> : null}
-                    {(currentPage > 1) && (currentPage <= totalPages) ? <CurrentPageLink currentPage={currentPage} /> : null}
-                    {currentPage+1 <= totalPages ? <NextPageLink currentPage={currentPage} /> : null}
-                    {currentPage+1 < totalPages-1 ? <Ellipsis /> : null}
-                    {totalPages >= (currentPage+2) ? <LastPageLink lastPage={totalPages} /> : null}
-                    {currentPage < totalPages ? <NextPageButton /> : null}
-                  </ul>
-                </nav>
-              </div>
-            </div>
+      <Level>
+        <Level.Item>
+          <Pagination align="center" role="navigation" aria-label="pagination">
+            <Pagination.List>
+              {currentPage > firstPage ? <PaginationStep>Anterior</PaginationStep> : null}
+              {firstPage < currentPage ? <PaginationLink>{firstPage}</PaginationLink> : null} 
+              {currentPage >= 4 ? <Ellipsis /> : null}            
+
+              {currentPage-1 > firstPage ? <PaginationLink>{currentPage-1}</PaginationLink> : null}
+              {(currentPage >= firstPage) && (currentPage <= lastPage) ? <PaginationLink current={true}>{currentPage}</PaginationLink> : null}
+              {currentPage+1 <= lastPage ? <PaginationLink>{currentPage+1}</PaginationLink> : null}
+
+              {currentPage+1 < lastPage-1 ? <Ellipsis /> : null}
+              {lastPage >= (currentPage+2) ? <PaginationLink>{lastPage}</PaginationLink> : null}
+              {currentPage < lastPage ? <PaginationStep>Próximo</PaginationStep> : null}
+            </Pagination.List>
+          </Pagination>
+        </Level.Item>
+      </Level>
     )
 }
 
-export default Pagination;
+export default PaginationStruct;

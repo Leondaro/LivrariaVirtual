@@ -1,14 +1,16 @@
+import { Table } from "rbx";
+
 function TableFoot({columns}) {
     return (
-        <>
-            <tfoot className="has-background-burgundy">
-                <tr>
-                    {columns.map((column) => 
-                        <th key={column} >{column}</th>
-                    )}
-                </tr>
-            </tfoot>
-        </>
+        <Table.Foot>
+            <Table.Row>
+                {columns.map((column) => 
+                    <Table.Cell textColor={"white"} textWeight={"bold"} key={column} >
+                        {column}
+                    </Table.Cell>
+                )}
+            </Table.Row>
+        </Table.Foot>
     )
 }
 

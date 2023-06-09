@@ -1,8 +1,8 @@
 import api from "../../services/api";
 import { useState, useEffect } from "react";
-import { FieldForm, UploadImgFieldForm, TextFieldForm, InputErrorMsg, SectionTitle, TableHead, TableFoot, Form } from "../../components";
-import Layout from "./layout";
+import { SectionTitle, TableHead, TableFoot } from "../../components";
 import { Column, Level, Generic, Block, Box, Field, Label, Control, Help, Icon, Input, Textarea, File, Button, Table } from "rbx";
+import Layout from "./layout";
 
 
 function Estoque() {
@@ -126,7 +126,7 @@ function Estoque() {
                 <Generic className={"justify-content"}>
                     <Generic className={"home"}>
                         <Box className={"half-width"}>
-                            <SectionTitle><span className="padding-title">Novo Livro</span></SectionTitle>
+                            <SectionTitle>Novo Livro</SectionTitle>
                             <Level.Item>
                                 <Column size={"10"}>
                                     <form id="cadBook" onSubmit={idItem === null ? HandlerInsertBook : HandlerUpdateBook} encType="multipart/form-data" method="post">
@@ -141,7 +141,7 @@ function Estoque() {
                                                                 <File.Icon>
                                                                     <i className="fa fa-upload"></i>
                                                                 </File.Icon>
-                                                                <span>Anexar imagem...</span>
+                                                                <Generic as="span">Anexar imagem...</Generic>
                                                             </File.CTA>
                                                             <File.Name backgroundColor={"white"}>{fileImage.name || ""}</File.Name>
                                                         </File.Label>
@@ -253,28 +253,11 @@ function Estoque() {
                     <Generic className={"home"}>
                         <Column>
                             <Box>
-                                <SectionTitle><span className="padding-title">Estoque</span></SectionTitle>
+                                <SectionTitle>Estoque</SectionTitle>
                                 <Level.Item>
-                                    <Table backgroundColor={"grey-light"} hoverable={true} onLoad={HandlerFindBooks}>
-                                        <Table.Head>
-                                            <Table.Row>
-                                                {tableColumns.map((column) => 
-                                                    <Table.Cell textColor={"white"} textWeight={"bold"} key={column} >
-                                                        {column}
-                                                    </Table.Cell>
-                                                )}
-                                            </Table.Row>
-                                        </Table.Head>
-                                        <Table.Foot>
-                                            <Table.Row>
-                                                {tableColumns.map((column) => 
-                                                    <Table.Cell textColor={"white"} textWeight={"bold"} key={column} >
-                                                        {column}
-                                                    </Table.Cell>
-                                                )}
-                                            </Table.Row>
-                                        </Table.Foot>
-                                            
+                                    <Table backgroundColor={"grey-lighter"} hoverable={true} onLoad={HandlerFindBooks}>
+                                        <TableHead columns={tableColumns} />
+                                        <TableFoot columns={tableColumns} />
                                         <Table.Body>
                                             {
                                                 books.map((book, index) =>

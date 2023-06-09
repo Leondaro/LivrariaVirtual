@@ -1,8 +1,7 @@
 import { React } from "react";
-import { Form, Text, Figure } from "../components";
-import { Box, Column, Control, Level, Field, Help, Icon, Input, Block, Button, Section } from "rbx";
+import { Generic, Box, Column, Control, Level, Field, Help, Icon, Input, Block, Button, Section, Image } from "rbx";
 import Head from "next/head";
-import Image from "next/image";
+import Img from "next/image";
 import Link from "next/link";
 
 
@@ -29,11 +28,11 @@ function Login() {
                                 <Box className="border-burgundy">
                                     <Column>
                                         <Level>
-                                            <Figure className={"image"}>
+                                            <Image.Container>
                                                 <Link href={"/"}>
-                                                    <Image id="logo" src={"/_img/LivrariaLogo.png"} width={256} height={127} alt="Logotipo do site" />
+                                                    <Img id="logo" src="/_img/LivrariaLogo.png" width={256} height={127} alt="Logotipo do site" />
                                                 </Link>
-                                            </Figure>
+                                            </Image.Container>
                                         </Level>
                                         <Level.Item>
                                             <form id={"login"}>
@@ -79,13 +78,17 @@ function Login() {
                                         <Block>
                                             <Level marginless={true}>
                                                 <Level.Item>
-                                                    <strong><Text css={"has-text-white has-text-centered"}>Este é um projeto demosntrativo.</Text></strong>
+                                                    <Generic as="p" textAlign="center" textColor="white" textWeight="bold">
+                                                        Este é um projeto demosntrativo.
+                                                    </Generic>
                                                 </Level.Item>
                                             </Level>
                                             <Level marginless={true}>
                                                 <Level.Item>
                                                     <Link href={"https://conatto.github.io"}>
-                                                        <strong className="has-text-success">Saiba Mais</strong>
+                                                        <Generic as="p" textAlign="center" textColor="success" textWeight="bold">
+                                                            Saiba Mais
+                                                        </Generic>
                                                     </Link>
                                                 </Level.Item>
                                             </Level>

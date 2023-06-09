@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { Figure, Board, Text, BoardSection, InputSelect, ArrowLeftIcon, SectionTitle, TrashIcon, QuestionIcon, TruckIcon, MoneyIcon } from "../../components";
+import { Board, BoardSection, SectionTitle } from "../../components";
+import { Generic, Column, Level, Box, Icon, Button, Select, Title, Image } from "rbx";
 import Layout from "./layout";
+import Img from "next/image";
 import Link from "next/link";
-import { Generic, Column, Level, Box, Icon, Button } from "rbx";
 
 
 function Carrinho() {
@@ -13,33 +13,35 @@ function Carrinho() {
                     <Box className="default-width">
                         <Level className="space-between">
                             <Link href={"home"}>
-                                <Button color={"info"}>
+                                <Button color={"info"} outlined={true}>
                                     <Icon>
                                         <i className="fa fa-arrow-left" aria-hidden="true"></i>
                                     </Icon>
-                                    <span>Voltar</span>
+                                    <Generic as="span">Voltar</Generic>
                                 </Button>
                             </Link>
                         </Level>
                         <Level marginless={true}>
-                            <SectionTitle><span className="padding-title">Seu Carrinho</span></SectionTitle>
+                            <SectionTitle>Seu Carrinho</SectionTitle>
                         </Level>
                         <Level className="align-top">
                             <Column>
                                 <Level>
-                                    <Text css={"has-text-white padding-line-min"}>Total (x produtos) R$ 00,00</Text>
+                                    <Generic as="p" textColor="white" className="padding-line-min">
+                                        Total (x produtos) R$ 00,00
+                                    </Generic>
                                 </Level>
                                 <Level>
                                     <Board>
                                         <Level>
                                             <Generic className="padding-wrapper">
-                                                <Figure css={"image is-128x128 full-centered"} >
-                                                    <Image src={"/_img/shelfbook.jpg"} width={96} height={48} alt="Foto do livro"></Image>
-                                                </Figure>
+                                                <Image.Container size={128} className="full-centered">
+                                                    <Img src={"/_img/shelfbook.jpg"} width={96} height={48} alt="Foto do livro" />
+                                                </Image.Container>
                                             </Generic>
                                             <BoardSection>
                                                 <Level className="space-between">
-                                                    <Text css={"title is-4 has-text-white is-marginless"}>Titulo</Text>
+                                                    <Title size={4} textColor="white" marginless={true}>Titulo</Title>
                                                     <Link href={"#"} className="has-text-warning">
                                                         <Icon>
                                                             <i className="fa fa-trash-o fa-2x" aria-hidden="true"></i>
@@ -47,11 +49,21 @@ function Carrinho() {
                                                     </Link>
                                                 </Level>
                                                 <Level>
-                                                    <Text css={"has-text-white"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui metus, rutrum in elit ac, congue posuere sapien. Aliquam convallis massa felis, quis pharetra augue malesuada venenatis.</Text>
+                                                    <Generic as="p" textColor="white">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui metus, rutrum in elit ac, congue posuere sapien. Aliquam convallis massa felis, quis pharetra augue malesuada venenatis.
+                                                    </Generic>
                                                 </Level>
                                                 <Level className="space-between">
-                                                    <InputSelect />
-                                                    <Text css={"has-text-white"}>R$ 00,00</Text>
+                                                    <Select.Container>
+                                                        <Select>
+                                                            <Select.Option>1</Select.Option>
+                                                            <Select.Option>2</Select.Option>
+                                                            <Select.Option>3</Select.Option>
+                                                        </Select>
+                                                    </Select.Container>
+                                                    <Generic as="p" textColor="white">
+                                                        R$ 00,00
+                                                    </Generic>
                                                 </Level>
                                             </BoardSection>
                                         </Level>
@@ -62,19 +74,19 @@ function Carrinho() {
                                 <Level>
                                     <Board>
                                         <BoardSection>
-                                            <Text css={"title has-text-white padding-title"} >Resumo do Pedido</Text>
+                                            <Title textColor="white" className="padding-title">Resumo do Pedido</Title>
                                             <Level marginless={true} className="space-between">
-                                                <Text css={"subtitle is-6 has-text-white"} >Subtotal dos produtos</Text>
-                                                <Text css={"subtitle is-6 has-text-white"} >R$ 00,00</Text>
+                                                <Title subtitle={true} size={6} textColor="white">Subtotal dos produtos</Title>
+                                                <Title subtitle={true} size={6} textColor="white">R$ 00,00</Title>
                                             </Level>
                                             <Level marginless={true} className="space-between">
-                                                <Text css={"subtitle is-6 has-text-white"} >Entrega</Text>
-                                                <Text css={"subtitle is-6 has-text-white"} >R$ 00,00</Text>
+                                                <Title subtitle={true} size={6} textColor="white">Entrega</Title>
+                                                <Title subtitle={true} size={6} textColor="white">R$ 00,00</Title>
                                             </Level>
                                             <hr />
                                             <Level marginless={true} className="space-between">
-                                                <Text css={"title is-4 has-text-white"}>Total</Text>
-                                                <Text css={"title is-4 has-text-white"}>R$ 00,00</Text>
+                                                <Title size={4} textColor="white">Total</Title>
+                                                <Title size={4} textColor="white">R$ 00,00</Title>
                                             </Level>
                                         </BoardSection>
                                         
@@ -86,7 +98,7 @@ function Carrinho() {
                                                             <Icon>
                                                                 <i className="fa fa-question-circle"></i>
                                                             </Icon>
-                                                            <strong><Text css={"underline-hover"}>Ajuda</Text></strong>
+                                                            <Generic as="p" className="underline-hover" textWeight="bold">Ajuda</Generic>
                                                         </Level>
                                                     </Link>
                                                     <Link href={"#"} className="min-width has-text-light">
@@ -94,7 +106,7 @@ function Carrinho() {
                                                             <Icon>
                                                                 <i className="fa fa-truck"></i>
                                                             </Icon>
-                                                            <strong><Text css={"underline-hover"}>Entregas</Text></strong>
+                                                            <Generic as="p" className="underline-hover" textWeight="bold">Entregas</Generic>
                                                         </Level>
                                                     </Link>
                                                     <Link href={"#"} className="min-width has-text-light">
@@ -102,12 +114,12 @@ function Carrinho() {
                                                             <Icon>
                                                                 <i className="fa fa-money"></i>
                                                             </Icon>
-                                                            <strong><Text css={"underline-hover"}>Reembolso</Text></strong>
+                                                            <Generic as="p" className="underline-hover" textWeight="bold">Reembolso</Generic>
                                                         </Level>
                                                     </Link>
                                                 </Generic>
                                                 <Button color={"success"}>
-                                                    <span>Finalizar Compra</span>
+                                                    <Generic as="span">Finalizar Compra</Generic>
                                                 </Button>
                                             </Column>
                                         </BoardSection>
