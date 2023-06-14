@@ -7,26 +7,15 @@ function Acervo() {
     const cols = [0, 1, 2, 3]
     const categories = [
         "Romance",
-        "Contos e Crônicas",
         "Autoajuda",
         "Ficção Científica",
         "Finanças",
         "Astronomia",
         "Política",
         "Gestão",
-        "Física",
         "Negócios",
         "Economia",
-        "Literatura infantil",
-        "Psicologia",
-        "Quadrinhos",
-        "Administração",
-        "Ensaios",
         "Desenvolvimento Pessoal",
-        "Cursos de Inglês",
-        "Dicionários Técnicos",
-        "Literatura Juvenil",
-        "Diversos"
     ]
     
     return (
