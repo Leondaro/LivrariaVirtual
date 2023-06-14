@@ -132,6 +132,10 @@ span.file-name {
     flex-direction: column;
     user-select: none;
 }
+
+.button > p {
+    pointer-events: none;
+}
 li.button {
     background-color: transparent;
     border: 0px;
@@ -143,6 +147,7 @@ li.button {
     li.button.selected {
         background-color: $burgundy;
     }
+
 .default-width {
     width: 80vw;
 }
