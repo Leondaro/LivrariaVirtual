@@ -1,8 +1,6 @@
-const unselectCurrentFilter = () => {
-    document.getElementsByClassName("button selected")[0].classList.remove("selected");
-}
+import { FilterContext } from "../contexts/FilterContext";
+import { useContext } from "react";
 
-export function handleSelectFilter(e) {
-    unselectCurrentFilter()
-    e.target.classList.add("selected");
+export function useFilter() {
+    return useContext(FilterContext);
 }
