@@ -1,5 +1,9 @@
 export { default as SectionTitle } from "./utilities/SectionTitle";
-export { default as CardPlaceholder } from "./utilities/CardPlaceholder";
+export { default as CardPlaceholder } from "./card/CardPlaceholder";
+export { default as CardColumns } from "./card/CardColumns";
+export { default as Cardboard } from "./card/Cardboard";
+export { default as CardImage } from "./card/CardImage";
+export { default as CardContent } from "./card/CardContent";
 
 export { default as Board } from "./board/Board";
 export { default as BoardSection } from "./board/BoardSection";

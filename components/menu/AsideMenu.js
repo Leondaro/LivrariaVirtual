@@ -1,9 +1,19 @@
+import { useFilter } from "../../hooks/useFilter";
+import { useBooks } from "../../hooks/useBooks";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Generic, Box, Column, Highlight, Level, Navbar, Button } from "rbx";
 import MenuBurger from "./MenuBurger";
-import { handleSelectFilter } from "../../hooks/useFilter";
 
 
 function AsideMenu({ children }) {
+    const { type, changeType } = useFilter();
+    const { updateBooks } = useBooks();
+    
+    const handleChangeCategory = (category) => {
+        changeType(category);
+        updateBooks(category);
+    }
+
     return(
         <Column>
             <Box as="aside">
@@ -17,10 +27,15 @@ function AsideMenu({ children }) {
                 </Navbar.Brand>
                 <Navbar.Menu id="asideMenu">
                     <Generic as="ul" className="aside-list">
-                    <Button as="li" className="selected" marginless={true} onClick={(e) => { handleSelectFilter(e) }}><Highlight textColor="white" >Todos</Highlight></Button>
-                        {children.map((item, index) => {
-                            return <Button as="li" marginless={true} key={index} onClick={(e) => { handleSelectFilter(e) }}><Highlight textColor="white">{item}</Highlight></Button>
-                        })}
+                            {children.map((category, index) => {
+                                return (
+                                    <Button as="li" marginless={true} key={index} 
+                                    className={category === type ? "selected" : ''} 
+                                    onClick={() => { handleChangeCategory(category); }}>
+                                        <Highlight textColor="white">{category}</Highlight>
+                                    </Button>
+                                );
+                            })}
                     </Generic>
                 </Navbar.Menu>
             </Box>

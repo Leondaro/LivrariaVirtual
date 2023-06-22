@@ -4,17 +4,17 @@ import { Column, Content, Footer, Generic, Level } from "rbx";
 function FooterStruct() {
     return (
         <Footer className={"border-top-burgundy"}>
-            <Content textAlign={"center"}>
+            <Content textAlign={"centered"}>
                 <Column>
                     <Level.Item>
-                        <Generic as={"p"} textAlign={"center"} textColor={"white"} textWeight={"bold"}>
+                        <Generic as={"p"} textAlign={"centered"} textColor={"white"} textWeight={"bold"}>
                             Este é um projeto demosntrativo.
                         </Generic>
                     </Level.Item>
                     
                     <Level.Item>
                         <Link href={"https://conatto.github.io"}>
-                            <Generic as={"p"} textAlign={"center"} textColor={"success"} textWeight={"bold"}>
+                            <Generic as={"p"} textAlign={"centered"} textColor={"success"} textWeight={"bold"}>
                                 Saiba Mais
                             </Generic>
                         </Link>

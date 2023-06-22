@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { BookContextProvider } from "../../contexts/BookContext";
 import { NavMenu, Footer } from "../../components";
 import { Section, Level } from "rbx";
 
@@ -15,11 +16,13 @@ const Layout = ({ name, children }) => {
             <header>
                 <NavMenu />
             </header>
-            <Section className="translucid-grey border-top-burgundy border-bottom-burgundy">
-                <Level className="justify-content">
-                    {children}
-                </Level>
-            </Section>
+            <BookContextProvider>
+                <Section className="translucid-grey border-top-burgundy border-bottom-burgundy">
+                    <Level className="justify-content">
+                        {children}
+                    </Level>
+                </Section>
+            </BookContextProvider>
             <Footer />
         </>
     )
