@@ -25,10 +25,13 @@ export default async function Handler(req, res) {
                         console.log(err);
                     }
                     
-                    const db = await connectionDB();
                     let formData = JSON.parse(fields.inputFields);
+                    const { genero } = formData;
+                    if (genero !== 'undefined') (() => {
+                        genero.includes(',') ? formData["genero"] = genero.split(',') : formData["genero"] = [genero];
+                    })();
                     
-
+                    const db = await connectionDB();
                     if (formData.length === 0)
                         formData = {}
                     if (files.fileImage !== null && files.fileImage !== undefined) {
