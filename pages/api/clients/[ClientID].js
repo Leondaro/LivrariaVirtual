@@ -19,6 +19,7 @@ export default async function Handler(req, res) {
                 form.uploadDir = uploadFolder;
                 let finalResult = [];
 
+                console.log(id);
                 form.parse(req, async (err, fields, files) => {
                     if (err) {
                         console.log("Error parsing files.");
@@ -27,7 +28,7 @@ export default async function Handler(req, res) {
                     
                     let formData = JSON.parse(fields.inputFields);
                     const { genero } = formData;
-                    if (genero !== 'undefined') (() => {
+                    if (genero) (() => {
                         genero.includes(',') ? formData["genero"] = genero.split(',') : formData["genero"] = [genero];
                     })();
                     

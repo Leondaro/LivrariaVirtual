@@ -156,7 +156,7 @@ function Estoque() {
                                                 <Control iconLeft={true}>
                                                     <Icon align={"left"}><i className={"fa fa-book"}></i></Icon>
                                                     <Input type={"text"} name={"titulo"} placeholder={"O título do livro"} 
-                                                    value={inputs.titulo || ""} maxLenght={70} onChange={handleChange} ></Input>
+                                                    value={inputs.titulo || ""} maxlenght={70} onChange={handleChange} ></Input>
                                                 </Control>
                                                 <Help textColor="danger" hidden={true}>Digite um e-mail válido.</Help>
                                             </Field>
@@ -167,7 +167,7 @@ function Estoque() {
                                                 <Control iconLeft={true}>
                                                     <Icon align={"left"}><i className={"fa fa-user"}></i></Icon>
                                                     <Input type={"text"} name={"autor"} placeholder={"O autor do livro"} 
-                                                    value={inputs.autor || ""} maxLenght={60} onChange={handleChange} ></Input>
+                                                    value={inputs.autor || ""} maxlenght={60} onChange={handleChange} ></Input>
                                                 </Control>
                                                 <Help textColor="danger" hidden={true}>Digite um nome válido.</Help>
                                             </Field>
@@ -178,7 +178,7 @@ function Estoque() {
                                                 <Control iconLeft={true}>
                                                     <Icon align={"left"}><i className={"fa fa-building"}></i></Icon>
                                                     <Input type={"text"} name={"editora"} placeholder={"A editora do livro"} 
-                                                    value={inputs.editora || ""} maxLenght={30} onChange={handleChange} ></Input>
+                                                    value={inputs.editora || ""} maxlenght={30} onChange={handleChange} ></Input>
                                                 </Control>
                                                 <Help textColor="danger" hidden={true}>Digite um nome válido.</Help>
                                             </Field>
@@ -189,7 +189,7 @@ function Estoque() {
                                                 <Control iconLeft={true}>
                                                     <Icon align={"left"}><i className={"fa fa-tag"}></i></Icon>
                                                     <Input type={"text"} name={"genero"} placeholder={"O tipo literário do livro"} 
-                                                    value={inputs.genero || ""} maxLenght={30} onChange={handleChange} ></Input>
+                                                    value={inputs.genero || ""} maxlenght={30} onChange={handleChange} ></Input>
                                                 </Control>
                                                 <Help textColor="danger" hidden={true}>Digite uma categoria válido.</Help>
                                             </Field>
@@ -200,7 +200,7 @@ function Estoque() {
                                                 <Control iconLeft={true}>
                                                     <Icon align={"left"}><i className={"fa fa-calendar"}></i></Icon>
                                                     <Input type={"text"} name={"ano"} placeholder={"O ano de lançamento do livro"} 
-                                                    value={inputs.ano || ""} maxLenght={4} onChange={handleChange} ></Input>
+                                                    value={inputs.ano || ""} maxlenght={4} onChange={handleChange} ></Input>
                                                 </Control>
                                                 <Help textColor="danger" hidden={true}>Digite um ano válido.</Help>
                                             </Field>
@@ -210,8 +210,8 @@ function Estoque() {
                                                 <Label textColor="white">Preço</Label>
                                                 <Control iconLeft={true}>
                                                     <Icon align={"left"}><i className={"fa fa-usd"}></i></Icon>
-                                                    <Input type={"text"} name={"genero"} placeholder={"O preço do livro"} 
-                                                    value={inputs.preco || ""} maxLenght={5} onChange={handleChange} ></Input>
+                                                    <Input type={"text"} name={"preco"} placeholder={"O preço do livro"} 
+                                                    value={inputs.preco || ""} maxlenght={5} onChange={handleChange} ></Input>
                                                 </Control>
                                                 <Help textColor="danger" hidden={true}>Digite um preço válido.</Help>
                                             </Field>
@@ -222,7 +222,7 @@ function Estoque() {
                                                 <Control iconLeft={true}>
                                                     <Icon align={"left"}><i className={"fa fa-percent"}></i></Icon>
                                                     <Input type={"text"} name={"desconto"} placeholder={"O desconto do livro, se houver (%)"} 
-                                                    value={inputs.desconto || ""} maxLenght={3} onChange={handleChange} ></Input>
+                                                    value={inputs.desconto || ""} maxlenght={3} onChange={handleChange} ></Input>
                                                 </Control>
                                                 <Help textColor="danger" hidden={true}>Digite um valor válido.</Help>
                                             </Field>
