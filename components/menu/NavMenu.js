@@ -1,16 +1,20 @@
+import { useCart } from "../../hooks/useCart";
+import { Container, Generic, Highlight, Icon, Image, Level, Navbar } from "rbx";
+import CartNotification from "../cart/CartNotification";
 import MenuBurger from "./MenuBurger";
 import NavTag from "./NavTag";
 import Img from "next/image";
 import Link from "next/link";
-import { Container, Highlight, Image, Level, Navbar } from "rbx";
 
 
 function NavMenu() {
+    const { itemsQuantity } = useCart();
+
     return (
         <Navbar className="border-bottom-burgundy">
             <Container>
                 <Level.Item>
-                    <Link href={"home"}>
+                    <Link href={"/livraria/home"}>
                         <Image.Container className="menu-logo">
                             <Img src={"/_img/LivrariaLogo.png"} width={128} height={64} alt="Logotipo" />
                         </Image.Container>
@@ -33,6 +37,14 @@ function NavMenu() {
                         <Navbar.Item href={"/livraria/acervo/acervo"}>
                             <Highlight textColor="white" textWeight="bold">
                                 Acervo
+                            </Highlight>
+                        </Navbar.Item>
+                        <Navbar.Item href={"/livraria/carrinho"}>
+                            <Highlight textColor="white" textWeight="bold">
+                                <Icon className="cart-icon">
+                                    <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </Icon>
+                                {itemsQuantity > 0 && <CartNotification>{itemsQuantity}</CartNotification>}
                             </Highlight>
                         </Navbar.Item>
                         <Navbar.Item href={"/"}>

@@ -1,4 +1,10 @@
 export { default as SectionTitle } from "./utilities/SectionTitle";
+
+export { default as CartInfo } from "./cart/CartInfo";
+export { default as CartList } from "./cart/CartList";
+export { default as CartSummary } from "./cart/CartSummary";
+export { default as CartNotification } from "./cart/CartNotification";
+
 export { default as CardPlaceholder } from "./card/CardPlaceholder";
 export { default as CardColumns } from "./card/CardColumns";
 export { default as Cardboard } from "./card/Cardboard";

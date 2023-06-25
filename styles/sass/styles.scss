@@ -83,6 +83,26 @@ span.file-name {
 .index-logo { 
     width: 16rem;
 }
+.cart-icon {
+    width: auto;
+    padding: 0 .5rem;
+}
+.cart-icon > i {
+    font-size: 1.5rem;
+}
+.cart-notification {
+    position: absolute;
+    right: .5rem;
+    bottom: .62rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #d83b01;
+}
+
 .section {
     margin: 4.5rem 0;
 }
@@ -208,6 +228,27 @@ li.button {
 }
 .scratched {
     text-decoration: line-through;
+}
+
+.cart-list-container {
+    display: grid;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+.wrapper-description {
+    position: relative;
+    height: 6rem;
+    overflow: hidden;
+}
+.preview-description::after {
+    content: '...';
+    position: absolute;
+    bottom: 0;
+    right: .25rem;
+    background-color: $burgundy;
+    color: white;
+    text-align: right;
+    padding: 0 .5rem;
 }
 
 .board {

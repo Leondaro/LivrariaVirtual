@@ -2,6 +2,7 @@ import Head from "next/head";
 import { BookContextProvider } from "../../contexts/BookContext";
 import { NavMenu, Footer } from "../../components";
 import { Section, Level } from "rbx";
+import { CartContextProvider } from "../../contexts/CartContext";
 
 const Layout = ({ name, children }) => {
     return (
@@ -13,16 +14,18 @@ const Layout = ({ name, children }) => {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
                 <title>{`Livraria Virtual - ${name}`}</title>
             </Head>
-            <header>
-                <NavMenu />
-            </header>
-            <BookContextProvider>
-                <Section className="translucid-grey border-top-burgundy border-bottom-burgundy">
-                    <Level className="justify-content">
-                        {children}
-                    </Level>
-                </Section>
-            </BookContextProvider>
+            <CartContextProvider>
+                <header>
+                    <NavMenu />
+                </header>
+                <BookContextProvider>
+                    <Section className="translucid-grey border-top-burgundy border-bottom-burgundy">
+                        <Level className="justify-content">
+                            {children}
+                        </Level>
+                    </Section>
+                </BookContextProvider>
+            </CartContextProvider>
             <Footer />
         </>
     )
