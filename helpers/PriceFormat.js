@@ -1,6 +1,7 @@
 const priceFormat = (price) => {
-    let stringPrice = Number((price).toFixed(2)).toString();
+    if (typeof price === 'undefined') return
 
+    let stringPrice = Number(price).toFixed(2).toString();
     const integerPart = stringPrice.split(".").shift();
     let decimalPart = stringPrice.split(".").pop();
     if (decimalPart.length < 2) decimalPart += "0";
