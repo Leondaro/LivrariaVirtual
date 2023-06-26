@@ -1,8 +1,8 @@
 import calcDiscount from "../../helpers/CalcDiscount";
 import priceFormat from "../../helpers/PriceFormat";
 import { useBooks } from "../../hooks/useBooks"
-import { useCart } from "../../hooks/useCart";
-import { Generic, Column, Card, Level, Block, Title, Button, Icon } from "rbx";
+import { CartButton } from "..";
+import { Generic, Column, Card, Level, Block, Title, Button } from "rbx";
 import CardImage from "./CardImage";
 import CardContent from "./CardContent";
 import Img from "next/image";
@@ -11,34 +11,21 @@ import Link from "next/link";
 
 const Cardboard = () => {
     const { books } = useBooks();
-    const { itemsQuantity, updateCartItems, updateItemsQuantity } = useCart();
-
-    const handleAddToCart = (book) => {
-        const cartItemsStoraged = localStorage.getItem('cart-items');
-        let cartItems = [];
-        const newItem = { 
+    
+    const handleDescription = (book) => {
+        const bookStoraged = localStorage.getItem('book');
+        
+        if (bookStoraged) if (bookStoraged.id === book._id) return
+        const selectedBook = {
             id: book._id,
-            titulo: book.titulo,
             capa: book.capa,
+            titulo: book.titulo,
+            autor: book.autor,
             preco: Number(book.preco),
             desconto: Number(book.desconto),
             descricao: book.descricao,
-            quantity: 1
-        };
-
-        if (cartItemsStoraged) {
-            cartItems = JSON.parse(cartItemsStoraged);
-            const existingItemIndex = cartItems.findIndex(item => item.id === newItem.id);
-            
-            existingItemIndex === -1 ? cartItems.push(newItem) : cartItems[existingItemIndex].quantity += 1;
-        } else {
-            cartItems.push(newItem);
         }
-
-        localStorage.setItem('cart-items', JSON.stringify(cartItems));
-        localStorage.setItem('cart-items-quantity', itemsQuantity+1);
-        updateCartItems(itemsQuantity+1);
-        updateItemsQuantity(itemsQuantity+1);
+        localStorage.setItem('book', JSON.stringify(selectedBook));
     }
 
     return (
@@ -66,21 +53,14 @@ const Cardboard = () => {
                                     </Block>
                                     <Level>
                                         <Level.Item align="left">
-                                            <Link href={"livros/" + book._id}>
-                                                <Button color={"warning"}>
+                                            <Link href={"/livraria/livros/" + book._id}>
+                                                <Button color={"warning"} onClick={() => handleDescription(book) }>
                                                     Detalhes
                                                 </Button>
                                             </Link>
                                         </Level.Item>
                                         <Level.Item align={"right"}>
-                                            <Link href={"#"}>
-                                                <Button color={"success"} onClick={() => handleAddToCart(book) }>
-                                                    <Icon>
-                                                        <i className="fa fa-cart-plus" aria-hidden="true"></i>
-                                                    </Icon>
-                                                    <Generic as="span">Carrinho</Generic>
-                                                </Button>
-                                            </Link>
+                                            <CartButton target={book} />
                                         </Level.Item>
                                     </Level>
                                 </CardContent>

@@ -1,6 +1,8 @@
 export { default as SectionTitle } from "./utilities/SectionTitle";
+export { default as SectionProduct } from "./utilities/SectionProduct";
 
 export { default as CartInfo } from "./cart/CartInfo";
+export { default as CartButton } from "./cart/CartButton";
 export { default as CartList } from "./cart/CartList";
 export { default as CartSummary } from "./cart/CartSummary";
 export { default as CartNotification } from "./cart/CartNotification";
