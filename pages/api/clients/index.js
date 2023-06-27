@@ -17,13 +17,17 @@ export default async function Handler(req, res) {
             }
 
             try {
+                const nPerPage = 12;
+                const { pageIndex } = query;
                 const db = await connectionDB();
-                const cursor = await db.collection('livros').find(
-                    filter
-                ).toArray();
-                /*const cursor = await db.collection('livros').find({}).toArray();*/
-                res.send(cursor);
-                //res.send(req.config);
+                const count = await db.collection('livros').countDocuments(filter);
+                const cursor = await db.collection('livros')
+                .find(filter)
+                .skip(pageIndex ? Number(pageIndex) * nPerPage : 0)
+                .limit(nPerPage)
+                .toArray();
+                
+                res.send({ docs: cursor, pages: (Math.ceil(count / nPerPage)) });
             } catch (error) {
                 console.log(error);
                 res.send(error);

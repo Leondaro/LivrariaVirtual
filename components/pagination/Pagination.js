@@ -1,3 +1,6 @@
+import { useBooks } from "../../hooks/useBooks";
+import { useFilter } from "../../hooks/useFilter";
+import { useState } from "react";
 import { Level, Pagination } from "rbx";
 import PaginationStep from "./PaginationStep";
 import PaginationLink from "./PaginationLink";
@@ -6,25 +9,33 @@ import Ellipsis from "./Ellipsis";
 
 function PaginationStruct() {
     const firstPage = 1;
-    const lastPage = 12;
-    let currentPage = 1;
-    
+    const { amountPages, updateBooks } = useBooks();
+    const { type } = useFilter();
+    const [currentPage, setCurrentPage] = useState(firstPage);
+    const lastPage = amountPages;
+
+    const handlePageNavigation = async (page) => {
+      const pageIndex = page-1;
+      setCurrentPage(page);
+      await updateBooks(type, pageIndex);
+    }
+
     return (
       <Level>
         <Level.Item>
           <Pagination align="center" role="navigation" aria-label="pagination">
             <Pagination.List>
-              {currentPage > firstPage ? <PaginationStep>Anterior</PaginationStep> : null}
-              {firstPage < currentPage ? <PaginationLink>{firstPage}</PaginationLink> : null} 
-              {currentPage >= 4 ? <Ellipsis /> : null}            
+              {currentPage > firstPage && <PaginationStep handleNavigation={() => handlePageNavigation(currentPage-1)} >Anterior</PaginationStep>}
+              {firstPage < currentPage && <PaginationLink handleNavigation={() => handlePageNavigation(firstPage)} >{firstPage}</PaginationLink>} 
+              {currentPage >= 4 && <Ellipsis />}            
 
-              {currentPage-1 > firstPage ? <PaginationLink>{currentPage-1}</PaginationLink> : null}
-              {(currentPage >= firstPage) && (currentPage <= lastPage) ? <PaginationLink current={true}>{currentPage}</PaginationLink> : null}
-              {currentPage+1 <= lastPage ? <PaginationLink>{currentPage+1}</PaginationLink> : null}
+              {currentPage-1 > firstPage && <PaginationLink handleNavigation={() => handlePageNavigation(currentPage-1)} >{currentPage-1}</PaginationLink>}
+              {(currentPage >= firstPage) && (currentPage <= lastPage) && <PaginationLink current={true} >{currentPage}</PaginationLink>}
+              {currentPage+1 <= lastPage && <PaginationLink handleNavigation={() => handlePageNavigation(currentPage+1)} >{currentPage+1}</PaginationLink>}
 
-              {currentPage+1 < lastPage-1 ? <Ellipsis /> : null}
-              {lastPage >= (currentPage+2) ? <PaginationLink>{lastPage}</PaginationLink> : null}
-              {currentPage < lastPage ? <PaginationStep>Próximo</PaginationStep> : null}
+              {currentPage+1 < lastPage-1 && <Ellipsis />}
+              {lastPage >= (currentPage+2) && <PaginationLink handleNavigation={() => handlePageNavigation(lastPage)} >{lastPage}</PaginationLink>}
+              {currentPage < lastPage && <PaginationStep handleNavigation={() => handlePageNavigation(currentPage+1)} >Próximo</PaginationStep>}
             </Pagination.List>
           </Pagination>
         </Level.Item>
