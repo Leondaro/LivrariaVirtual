@@ -1,25 +1,27 @@
 import { useBooks } from "../../hooks/useBooks";
 import { useFilter } from "../../hooks/useFilter";
-import { useState } from "react";
+import { usePagination } from "../../hooks/usePagination";
 import { Level, Pagination } from "rbx";
 import PaginationStep from "./PaginationStep";
 import PaginationLink from "./PaginationLink";
 import Ellipsis from "./Ellipsis";
+import router from "next/router";
 
 
 function PaginationStruct() {
-    const firstPage = 1;
     const { amountPages, updateBooks } = useBooks();
+    const { currentPage, updatePage } = usePagination();
     const { type } = useFilter();
-    const [currentPage, setCurrentPage] = useState(firstPage);
+    const firstPage = 1;
     const lastPage = amountPages;
+    
 
     const handlePageNavigation = async (page) => {
-      const pageIndex = page-1;
-      setCurrentPage(page);
-      await updateBooks(type, pageIndex);
+      await updateBooks({ queryFilter: type, pageIndex: page-1 });
+      updatePage(page);
+      router.push(`/livraria/acervo/${page}`)
     }
-
+    
     return (
       <Level>
         <Level.Item>

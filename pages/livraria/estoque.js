@@ -54,7 +54,7 @@ function Estoque() {
         (async () => {
             api.get('/clients')
             .then(response => {
-                setBooks(response.data);
+                setBooks(response.data.docs);
             });
         })();
     }, []);

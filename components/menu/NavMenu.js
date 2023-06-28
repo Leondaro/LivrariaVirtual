@@ -34,7 +34,7 @@ function NavMenu() {
                                 Home
                             </Highlight>
                         </Navbar.Item>
-                        <Navbar.Item href={"/livraria/acervo/acervo"}>
+                        <Navbar.Item href={"/livraria/acervo/1"}>
                             <Highlight textColor="white" textWeight="bold">
                                 Acervo
                             </Highlight>

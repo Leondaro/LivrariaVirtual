@@ -9,11 +9,11 @@ export function BookContextProvider({children}) {
     const [isLoading, setIsLoading] = useState(false);
     const { findBooks } = useQuery();
     
-    const updateBooks = async (filterValue, pageValue) => {
+    const updateBooks = async (paramsValue) => {
         if (isLoading) return;
 
         setIsLoading(true);
-        const { data } = await findBooks(filterValue, pageValue);
+        const { data } = await findBooks(paramsValue);
         await setBooks(data.docs);
         await setAmountPages(data.pages);
         setIsLoading(false);

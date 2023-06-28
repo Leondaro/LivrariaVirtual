@@ -1,16 +1,21 @@
 import { useFilter } from "../../hooks/useFilter";
 import { useBooks } from "../../hooks/useBooks";
+import { usePagination } from "../../hooks/usePagination";
 import { Generic, Box, Column, Highlight, Level, Navbar, Button } from "rbx";
 import MenuBurger from "./MenuBurger";
+import router from "next/router";
 
 
 function AsideMenu({ children }) {
     const { type, changeType } = useFilter();
+    const { updatePage } = usePagination();
     const { updateBooks } = useBooks();
     
-    const handleChangeCategory = (category) => {
-        changeType(category);
-        updateBooks(category);
+    const handleChangeFilterQuery = (filter) => {
+        changeType(filter);
+        updateBooks({ queryFilter: filter });
+        updatePage(1);
+        router.push("/livraria/acervo/1");
     }
 
     return(
@@ -30,7 +35,7 @@ function AsideMenu({ children }) {
                                 return (
                                     <Button as="li" marginless={true} key={index} 
                                     className={category === type ? "selected" : ''} 
-                                    onClick={() => { handleChangeCategory(category); }}>
+                                    onClick={() => { handleChangeFilterQuery(category); }}>
                                         <Highlight textColor="white">{category}</Highlight>
                                     </Button>
                                 );
