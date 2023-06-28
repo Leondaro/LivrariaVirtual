@@ -8,7 +8,7 @@ export { default as CartSummary } from "./cart/CartSummary";
 export { default as CartNotification } from "./cart/CartNotification";
 
 export { default as CardPlaceholder } from "./card/CardPlaceholder";
-export { default as CardColumns } from "./card/CardColumns";
+export { default as CardList } from "./card/CardList";
 export { default as Cardboard } from "./card/Cardboard";
 export { default as CardImage } from "./card/CardImage";
 export { default as CardContent } from "./card/CardContent";

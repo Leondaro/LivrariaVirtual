@@ -1,10 +1,8 @@
 import calcDiscount from "../../helpers/CalcDiscount";
 import priceFormat from "../../helpers/PriceFormat";
 import { useBooks } from "../../hooks/useBooks"
-import { CartButton } from "..";
+import { CardImage, CartButton, CardContent } from "..";
 import { Generic, Column, Card, Level, Block, Title, Button } from "rbx";
-import CardImage from "./CardImage";
-import CardContent from "./CardContent";
 import Img from "next/image";
 import Link from "next/link";
 
@@ -52,14 +50,14 @@ const Cardboard = () => {
                                         <Title size={4} textColor="white">{"R$ " + priceFormat(calcDiscount(book.desconto, book.preco))}</Title>
                                     </Block>
                                     <Level>
-                                        <Level.Item align="left">
+                                        <Level.Item>
                                             <Link href={"/livraria/livros/" + book._id}>
                                                 <Button color={"warning"} onClick={() => handleDescription(book) }>
                                                     Detalhes
                                                 </Button>
                                             </Link>
                                         </Level.Item>
-                                        <Level.Item align={"right"}>
+                                        <Level.Item>
                                             <CartButton target={book} />
                                         </Level.Item>
                                     </Level>

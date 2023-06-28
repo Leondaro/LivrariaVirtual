@@ -267,7 +267,7 @@ li.button {
 
 .card-columns {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(4, 18rem);
     justify-content: center;
 }
 .box-card {
@@ -277,7 +277,7 @@ li.button {
 
 .card-size {  
     width: 18rem; 
-    height: 36rem;
+    min-height: 36.5rem;
     border-radius: .25rem;
 }
 .card-imagem-size {
@@ -285,7 +285,7 @@ li.button {
     height: 15rem;
 }
 .card-header-size { 
-    min-height: 4.5rem; 
+    min-height: 5.5rem; 
 }
 
 
@@ -384,12 +384,15 @@ thead, tfoot {
         flex-direction: column;
     }
 }
-@media screen and (max-width: 756px) {
+@media screen and (max-width: 767px) {
     .card-columns {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: 1rem 0;
+    }
+    .navbar-right > nav {
+        width: 100%;
     }
 }
 

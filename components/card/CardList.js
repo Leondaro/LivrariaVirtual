@@ -3,7 +3,7 @@ import { useBooks } from "../../hooks/useBooks"
 import { Generic, Column } from "rbx"
 import Cardboard from "./Cardboard"
 
-const CardColumns = ({ children }) => {
+const CardList = ({ children }) => {
     const { books, updateBooks } = useBooks();
     const placeholders = [0, 1, 2, 3]
 
@@ -34,4 +34,4 @@ const CardColumns = ({ children }) => {
     )
 }
 
-export default CardColumns;
+export default CardList;

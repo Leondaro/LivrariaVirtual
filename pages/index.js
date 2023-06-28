@@ -78,7 +78,7 @@ function Login() {
                                         <Block>
                                             <Level marginless={true}>
                                                 <Level.Item>
-                                                    <Generic as="p" textAlign="center" textColor="white" textWeight="bold">
+                                                    <Generic as="p" textAlign="centered" textColor="white" textWeight="bold">
                                                         Este é um projeto demosntrativo.
                                                     </Generic>
                                                 </Level.Item>
@@ -86,7 +86,7 @@ function Login() {
                                             <Level marginless={true}>
                                                 <Level.Item>
                                                     <Link href={"https://conatto.github.io"}>
-                                                        <Generic as="p" textAlign="center" textColor="success" textWeight="bold">
+                                                        <Generic as="p" textAlign="centered" textColor="success" textWeight="bold">
                                                             Saiba Mais
                                                         </Generic>
                                                     </Link>

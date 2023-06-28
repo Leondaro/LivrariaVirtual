@@ -1,6 +1,5 @@
 import { useFilter } from "../../hooks/useFilter";
 import { useBooks } from "../../hooks/useBooks";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Generic, Box, Column, Highlight, Level, Navbar, Button } from "rbx";
 import MenuBurger from "./MenuBurger";
 

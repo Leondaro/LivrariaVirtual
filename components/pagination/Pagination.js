@@ -27,13 +27,13 @@ function PaginationStruct() {
             <Pagination.List>
               {currentPage > firstPage && <PaginationStep handleNavigation={() => handlePageNavigation(currentPage-1)} >Anterior</PaginationStep>}
               {firstPage < currentPage && <PaginationLink handleNavigation={() => handlePageNavigation(firstPage)} >{firstPage}</PaginationLink>} 
-              {currentPage >= 4 && <Ellipsis />}            
+              {currentPage > firstPage+2 && <Ellipsis />}            
 
               {currentPage-1 > firstPage && <PaginationLink handleNavigation={() => handlePageNavigation(currentPage-1)} >{currentPage-1}</PaginationLink>}
               {(currentPage >= firstPage) && (currentPage <= lastPage) && <PaginationLink current={true} >{currentPage}</PaginationLink>}
               {currentPage+1 <= lastPage && <PaginationLink handleNavigation={() => handlePageNavigation(currentPage+1)} >{currentPage+1}</PaginationLink>}
 
-              {currentPage+1 < lastPage-1 && <Ellipsis />}
+              {currentPage < lastPage-2 && <Ellipsis />}
               {lastPage >= (currentPage+2) && <PaginationLink handleNavigation={() => handlePageNavigation(lastPage)} >{lastPage}</PaginationLink>}
               {currentPage < lastPage && <PaginationStep handleNavigation={() => handlePageNavigation(currentPage+1)} >Próximo</PaginationStep>}
             </Pagination.List>

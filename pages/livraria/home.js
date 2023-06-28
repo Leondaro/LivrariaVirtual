@@ -1,4 +1,4 @@
-import { SectionTitle, CardColumns, CardPlaceholder } from "../../components";
+import { SectionTitle, CardList, CardPlaceholder } from "../../components";
 import { Generic, Box, Column } from "rbx";
 import Layout from "./layout";
 
@@ -10,9 +10,9 @@ function Home() {
                 <Column narrow={true}>
                     <Box>
                         <SectionTitle>Populares</SectionTitle>
-                        <CardColumns>
+                        <CardList>
                             <CardPlaceholder />
-                        </CardColumns>
+                        </CardList>
                     </Box>
                 </Column>
             </Generic>
