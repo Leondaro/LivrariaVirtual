@@ -17,8 +17,12 @@ const CollectionViewer = ({ children }) => {
     const handlePrimaryQuery = () => {
         const pageIdURL = getPageNumberURL();
         const storagedFilter = localStorage.getItem('query-filter')
+        
         if (storagedFilter) updateFilter(storagedFilter);
-        updateBooks({ queryFilter: storagedFilter ? storagedFilter : filter, pageIndex: pageIdURL > -1 && (pageIdURL-1) });
+        updateBooks({ 
+            queryFilter: storagedFilter ? storagedFilter : filter, 
+            pageIndex: pageIdURL > -1 && (pageIdURL-1),
+        });
     }
 
     return <>{children}</>;

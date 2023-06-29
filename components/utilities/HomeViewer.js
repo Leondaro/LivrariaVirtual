@@ -3,7 +3,8 @@ import { useBooks } from "../../hooks/useBooks";
 
 const HomeViewer = ({ children }) => {
     const { updateBooks } = useBooks();
-    
+    const sortParams = { sortBy: "", sortValue: '' };
+
     useEffect(() => {
         (async () => {
             await handlePrimaryQuery();
@@ -11,7 +12,7 @@ const HomeViewer = ({ children }) => {
     }, [])
 
     const handlePrimaryQuery = () => {
-        updateBooks();
+        updateBooks(sortParams);
     }
 
     return <>{children}</>;

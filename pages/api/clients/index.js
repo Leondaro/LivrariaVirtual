@@ -8,14 +8,16 @@ export default async function Handler(req, res) {
     const { method } = req;
     const { query } = req;
     let filter = {};
+    let sort = {};
 
     switch(method) {
         case 'GET':
             if (typeof query === 'object' && !IsEmpty(query)) {
-                const { queryFilter } = query;
+                const { queryFilter, sortBy, sortValue } = query;
                 if (queryFilter && queryFilter !== "Todos") filter = { "genero": queryFilter };
+                if (sortBy && sortValue) sort = { [sortBy]: sortValue }                
             }
-            
+
             try {
                 const nPerPage = 12;
                 const { pageIndex } = query;
@@ -23,6 +25,7 @@ export default async function Handler(req, res) {
                 const count = await db.collection('livros').countDocuments(filter);
                 const cursor = await db.collection('livros')
                 .find(filter)
+                .sort(sort)
                 .skip(pageIndex ? Number(pageIndex) * nPerPage : 0)
                 .limit(nPerPage)
                 .toArray();
