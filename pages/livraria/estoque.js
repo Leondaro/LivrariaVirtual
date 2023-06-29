@@ -21,7 +21,8 @@ function Estoque() {
         "Ano", 
         "Descrição", 
         "Preço", 
-        "Desconto"
+        "Desconto",
+        "Vendas"
     ]
 
     const handleSelectRow = (e) => {
@@ -64,7 +65,7 @@ function Estoque() {
         try {
             await api.get('/clients')
             .then(response => {
-                setBooks(response.data)
+                setBooks(response.data.docs)
             });
             console.log("data reloaded!")
         } catch (error) {
@@ -229,6 +230,17 @@ function Estoque() {
                                         </Block>
                                         <Block>
                                             <Field>
+                                                <Label textColor="white">Vendas</Label>
+                                                <Control iconLeft={true}>
+                                                    <Icon align={"left"}><i className={"fa fa-percent"}></i></Icon>
+                                                    <Input type={"text"} name={"vendas"} placeholder={""} 
+                                                    value={inputs.vendas || ""} maxlenght={3} onChange={handleChange} ></Input>
+                                                </Control>
+                                                <Help textColor="danger" hidden={true}>Digite um valor válido.</Help>
+                                            </Field>
+                                        </Block>
+                                        <Block>
+                                            <Field>
                                                 <Label textColor="white">Descrição</Label>
                                                 <Control iconLeft={true}>
                                                     <Textarea name={"descricao"} placeholder={"Uma breve descrição sobre o livro"} 
@@ -260,7 +272,7 @@ function Estoque() {
                                         <TableFoot columns={tableColumns} />
                                         <Table.Body>
                                             {
-                                                books.map((book, index) =>
+                                                books?.map((book, index) =>
                                                     <Table.Row key={index} data-id={book._id} onClick={handleSelectRow} >
                                                         <Table.Cell >{book.titulo}</Table.Cell>
                                                         <Table.Cell>{book.autor}</Table.Cell>
@@ -270,6 +282,7 @@ function Estoque() {
                                                         <Table.Cell>{book.capa}</Table.Cell>
                                                         <Table.Cell>{book.preco}</Table.Cell>
                                                         <Table.Cell>{book.desconto}</Table.Cell>
+                                                        <Table.Cell>{book.vendas}</Table.Cell>
                                                     </Table.Row>
                                                 )
                                             }

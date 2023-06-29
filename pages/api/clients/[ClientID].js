@@ -50,7 +50,7 @@ export default async function Handler(req, res) {
                         { _id: objId }, { $set: formData }
                     );
                     finalResult.push(queryResult, formData);
-                    res.status(200).json({ method: "put", success: true, content: finalResult });
+                    res.send({ docs: finalResult });
                 });
             } catch (error) {
                 console.log(error);

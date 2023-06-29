@@ -3,7 +3,7 @@ import { useBooks } from "../../hooks/useBooks";
 
 const HomeViewer = ({ children }) => {
     const { updateBooks } = useBooks();
-    const sortParams = { sortBy: "", sortValue: '' };
+    const sortParams = { sortBy: "vendas", sortValue: -1 };
 
     useEffect(() => {
         (async () => {
