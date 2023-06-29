@@ -1,10 +1,18 @@
 import { useCart } from "../../hooks/useCart";
 import { Button, Generic, Icon } from "rbx";
+import { toast } from "react-toastify";
 import Link from "next/link";
 
 const CartButton = ({ target }) => {
     const { itemsQuantity, updateCartItems, updateItemsQuantity } = useCart();
-
+    
+    const handleToast = () => toast('Item adicionado ao carrinho.', {
+        hideProgressBar: true,
+        autoClose: 3000,
+        type: 'success',
+        className: 'toast-message',
+        position: toast.POSITION.BOTTOM_CENTER
+    });
     const handleAddToCart = (book) => {
         const cartItemsStoraged = localStorage.getItem('cart-items');
         let cartList = [];
@@ -35,7 +43,7 @@ const CartButton = ({ target }) => {
 
     return(
         <Link href={"#"}>
-            <Button color={"success"} onClick={ () => handleAddToCart(target) }>
+            <Button color={"success"} onClick={ () => { handleAddToCart(target); handleToast(); } }>
                 <Icon>
                     <i className="fa fa-cart-plus"></i>
                 </Icon>

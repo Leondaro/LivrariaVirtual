@@ -41,8 +41,9 @@ $pagination-current-border-color: $burgundy;
 $zero: 0;
 $webkit-fill: -webkit-fill-available;
 
-@import "../../node_modules/bulma/bulma.sass";
-@import "../../node_modules/rbx/index.sass";
+@import "rbx/index.sass";
+@import "react-toastify/dist/ReactToastify.min.css";
+
 
 
 html, body {
@@ -250,6 +251,10 @@ li.button {
     text-align: right;
     padding: 0 .5rem;
 }
+.toast-message{
+    background-color: var(--toastify-color-info);
+    color: $white;
+}
 
 .board {
     width: 100%;
@@ -287,7 +292,6 @@ li.button {
 .card-header-size { 
     min-height: 5.5rem; 
 }
-
 
 .placeholder-image {
     width: 100%;
