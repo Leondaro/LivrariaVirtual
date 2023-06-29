@@ -13,9 +13,9 @@ export default async function Handler(req, res) {
         case 'GET':
             if (typeof query === 'object' && !IsEmpty(query)) {
                 const { queryFilter } = query;
-                if (queryFilter !== "Todos") filter = { "genero": queryFilter };
+                if (queryFilter && queryFilter !== "Todos") filter = { "genero": queryFilter };
             }
-
+            
             try {
                 const nPerPage = 12;
                 const { pageIndex } = query;

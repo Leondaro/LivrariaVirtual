@@ -1,4 +1,4 @@
-import { SectionTitle, CardList, CardPlaceholder } from "../../components";
+import { SectionTitle, CardList, CardPlaceholder, HomeViewer } from "../../components";
 import { Generic, Box, Column } from "rbx";
 import Layout from "./layout";
 import { FilterContextProvider } from "../../contexts/FilterContext";
@@ -12,9 +12,11 @@ function Home() {
                     <Column narrow={true}>
                         <Box>
                             <SectionTitle>Populares</SectionTitle>
-                            <CardList>
-                                <CardPlaceholder />
-                            </CardList>
+                            <HomeViewer>
+                                <CardList>
+                                    <CardPlaceholder />
+                                </CardList>
+                            </HomeViewer>
                         </Box>
                     </Column>
                 </Generic>

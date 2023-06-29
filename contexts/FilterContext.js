@@ -4,14 +4,15 @@ import { filterList } from "../utils/filterList";
 export const FilterContext = createContext();
 
 export function FilterContextProvider({ children }){
-    const [type, setType] = useState(filterList[0]);
+    const [filter, setFilter] = useState(filterList[0]);
 
-    const changeType = (value) => {
-        setType(value);
+    const updateFilter = (value) => {
+        setFilter(value);
+        localStorage.setItem('query-filter', value)
     }
 
     return(
-        <FilterContext.Provider value={{type, changeType}}>
+        <FilterContext.Provider value={{ filter, updateFilter }}>
             {children}
         </FilterContext.Provider>
     )

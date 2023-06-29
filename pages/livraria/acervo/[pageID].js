@@ -1,7 +1,7 @@
 import { FilterContextProvider } from "../../../contexts/FilterContext";
 import { PaginationContextProvider } from "../../../contexts/PaginationContext";
 import { filterList } from "../../../utils/filterList";
-import { SectionTitle, Pagination, AsideMenu, CardList, CardPlaceholder } from "../../../components";
+import { SectionTitle, Pagination, AsideMenu, CardList, CardPlaceholder, CollectionViewer } from "../../../components";
 import { Box, Column, Generic } from "rbx";
 import Layout from "../layout";
 
@@ -21,9 +21,11 @@ function Acervo() {
                             <Column narrow={true}>
                                 <Box>
                                     <SectionTitle>Acervo</SectionTitle>
-                                        <CardList>
-                                            <CardPlaceholder />
-                                        </CardList>
+                                        <CollectionViewer>
+                                            <CardList>
+                                                <CardPlaceholder />
+                                            </CardList>
+                                        </CollectionViewer>
                                     <Pagination />
                                 </Box>
                             </Column>

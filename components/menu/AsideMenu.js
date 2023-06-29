@@ -7,12 +7,13 @@ import router from "next/router";
 
 
 function AsideMenu({ children }) {
-    const { type, changeType } = useFilter();
+    const { filter, updateFilter } = useFilter();
     const { updatePage } = usePagination();
     const { updateBooks } = useBooks();
-    
-    const handleChangeFilterQuery = (filter) => {
-        changeType(filter);
+
+
+    const handleChangeQueryFilter = (filter) => {
+        updateFilter(filter);
         updateBooks({ queryFilter: filter });
         updatePage(1);
         router.push("/livraria/acervo/1");
@@ -34,8 +35,8 @@ function AsideMenu({ children }) {
                             {children.map((category, index) => {
                                 return (
                                     <Button as="li" marginless={true} key={index} 
-                                    className={category === type ? "selected" : ''} 
-                                    onClick={() => { handleChangeFilterQuery(category); }}>
+                                    className={category === filter ? "selected" : ''} 
+                                    onClick={() => { handleChangeQueryFilter(category); }}>
                                         <Highlight textColor="white">{category}</Highlight>
                                     </Button>
                                 );

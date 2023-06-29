@@ -11,13 +11,13 @@ import router from "next/router";
 function PaginationStruct() {
     const { amountPages, updateBooks } = useBooks();
     const { currentPage, updatePage } = usePagination();
-    const { type } = useFilter();
+    const { filter } = useFilter();
     const firstPage = 1;
     const lastPage = amountPages;
     
 
     const handlePageNavigation = async (page) => {
-      await updateBooks({ queryFilter: type, pageIndex: page-1 });
+      await updateBooks({ queryFilter: filter, pageIndex: page-1 });
       updatePage(page);
       router.push(`/livraria/acervo/${page}`)
     }
