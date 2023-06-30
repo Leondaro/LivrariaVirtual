@@ -1,7 +1,6 @@
-import { CartInfo, CartList, CartSummary, SectionTitle } from "../../components";
-import { Generic, Column, Level, Box, Icon, Button } from "rbx";
+import { BackButton, CartInfo, CartList, CartSummary, SectionTitle } from "../../components";
+import { Generic, Column, Level, Box } from "rbx";
 import Layout from "./layout";
-import Link from "next/link";
 
 
 function Carrinho() {
@@ -11,14 +10,7 @@ function Carrinho() {
                 <Column>
                     <Box className="default-width">
                         <Level className="space-between">
-                            <Link href={"home"}>
-                                <Button color={"info"} outlined={true}>
-                                    <Icon>
-                                        <i className="fa fa-arrow-left" aria-hidden="true"></i>
-                                    </Icon>
-                                    <Generic as="span">Voltar</Generic>
-                                </Button>
-                            </Link>
+                            <BackButton />
                         </Level>
                         <Level marginless={true}>
                             <SectionTitle>Meu Carrinho</SectionTitle>

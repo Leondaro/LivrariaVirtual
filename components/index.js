@@ -2,6 +2,7 @@ export { default as SectionTitle } from "./utilities/SectionTitle";
 export { default as SectionProduct } from "./utilities/SectionProduct";
 export { default as HomeViewer } from "./utilities/HomeViewer";
 export { default as CollectionViewer } from "./utilities/CollectionViewer";
+export { default as BackButton } from "./utilities/BackButton";
 
 export { default as CartInfo } from "./cart/CartInfo";
 export { default as CartButton } from "./cart/CartButton";
