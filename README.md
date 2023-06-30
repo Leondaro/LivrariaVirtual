@@ -12,12 +12,22 @@
 
 > ## Descrição: 
 >
-> Uma aplicação web de uma livraria fictícia. Desenvolvido como projeto acadêmico, o escopo é voltado para representar uma aplicação especializada na venda e cadastro de livros, bem como o cadastro de usuários, com potencial de expansão para recursos complementares.
+> Este projeto consiste em uma aplicação web de uma livraria. Foi desenvolvido como projeto acadêmico para implementar recursos e funcionalidades conforme o contexto de um e-commerce de livros.
+>
+>**Principais Tecnologias:**
+> - HTML, CSS e JavaScript;
+> - ReactJs;
+> - NextJs;
+> - MongoDB;
 
 > ## Funcionalidades: 
 > 
-> - **Front-end Responsivo**: Conteúdo adaptável para diferentes tamanhos de tela com menu hamburguer para mobile.
-> - **Integração com Banco de Dados**: Uma série livros e suas principais informações foram cadastradas para realizar uma consulta ao banco de dados. Foi utilizado a plataforma do MongoDb para o armazenamento dos dados.
+> - **Front-end Responsivo:** Interface adaptável e intuitiva para o usuário mobile.
+> - **Integração com Banco de Dados:** Uma série de livros e suas principais informações foram cadastradas para realizar uma consulta ao banco de dados.
+> - **Catálogo com Paginação:** Após a recuperação dos produtos no banco de dados, eles são exibidos com a paginação adequada na página de Acervo.
+> - **Filtro de Consulta:** É possível filtrar os produtos consultados por categoria de leitura, oferecendo uma experiência de uso personalizado para o usuário.
+> - **Consulta por Ordenação:** Na página Home, o usuário é recebido com uma listagem de produtos mais vendidos até aquele momento, em ordem decrescente.
+> - **Carrinho:** É possível adicionar e remover produtos do carrinho de compras, além de outras funcionalidades como as notificações de itens salvos, sua quantidade, e persistência no  localStorage ao recarregar a página.
 
 > ## Licença:
 > 
