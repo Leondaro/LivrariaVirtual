@@ -79,7 +79,7 @@ function Login() {
                                             <Level marginless={true}>
                                                 <Level.Item>
                                                     <Generic as="p" textAlign="centered" textColor="white" textWeight="bold">
-                                                        Este é um projeto demosntrativo.
+                                                        Este é um projeto demonstrativo
                                                     </Generic>
                                                 </Level.Item>
                                             </Level>
