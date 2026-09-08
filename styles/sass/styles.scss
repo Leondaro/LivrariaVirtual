@@ -75,6 +75,11 @@ span.file-name {
     margin-top: 4.5rem;
 }
 
+.image img {
+    width: revert-layer;
+    max-height: 280px;
+}
+
 .icon { 
     margin: .5rem, 3rem;
 }
