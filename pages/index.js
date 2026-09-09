@@ -85,7 +85,7 @@ function Login() {
                                             </Level>
                                             <Level marginless={true}>
                                                 <Level.Item>
-                                                    <Link href={"https://conatto.github.io"}>
+                                                    <Link href={"https://github.com/Leondaro/LivrariaVirtual"}>
                                                         <Generic as="p" textAlign="centered" textColor="success" textWeight="bold">
                                                             Saiba Mais
                                                         </Generic>
