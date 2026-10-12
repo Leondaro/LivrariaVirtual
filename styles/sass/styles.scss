@@ -55,8 +55,47 @@ html, body {
 }
 body { 
     background-image: $wallpaper; 
-    background-size: 100%; 
+    background-size: 100%;
 }
+
+
+.docs-layout {
+    background-color: bisque;
+    min-height: 100vh;
+    thead tr > th {
+        color:#3b4151 !important;
+    }
+    code {
+        background-color: inherit;
+    }
+    .swagger-ui .json-schema-2020-12 {
+        background-color: bisque;
+    }
+    .swagger-ui .json-schema-2020-12-property .json-schema-2020-12__title {
+        background-color: bisque;
+    }
+    .swagger-ui .json-schema-2020-12-accordion__children {
+        background-color: bisque;
+    }
+    .swagger-ui .json-schema-2020-12-accordion {
+        background-color: bisque;
+    }
+    .swagger-ui .json-schema-2020-12-expand-deep-button {
+        background-color: bisque;
+    }
+    .swagger-ui .json-schema-2020-12-accordion__icon svg {
+        background-color: bisque;
+    }
+}
+
+.swagger-ui .info .title small pre {
+    background-color: inherit;
+}
+.swagger-ui .opblock .opblock-section-header {
+    background: inherit !important;
+}
+
+
 a:hover {
     .underline-hover {
         text-decoration: underline;
